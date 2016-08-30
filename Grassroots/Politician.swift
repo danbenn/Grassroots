@@ -10,10 +10,8 @@ import UIKit
 import SwiftyJSON
 import Alamofire
 import AlamofireImage
-import RealmSwift
-import Realm
 
-class Politician : Object {
+class Politician {
     dynamic var name: String = ""
     dynamic var office: String!
     dynamic var full_bio: String!
@@ -22,15 +20,10 @@ class Politician : Object {
     dynamic var imageURL: String!
     dynamic var party: String = ""
     
-    required init() {
-        super.init()
-        // Perform further initialization
-    }
     
     //EFFECTS: initializes politician without an image
     //MODIFIES: name, party
-    convenience init(name: String, party: String) {
-        self.init()
+    init(name: String, party: String) {
         self.name = name
         self.party = party 
         //createBio()
@@ -38,8 +31,7 @@ class Politician : Object {
     
     //EFFECTS: initializes politician who has image
     //MODIFIES: name, party, imageURL
-    convenience init(name: String, party: String, imageURL: String) {
-        self.init()
+    init(name: String, party: String, imageURL: String) {
         self.name = name
         self.party = party
         self.imageURL = imageURL
@@ -47,16 +39,6 @@ class Politician : Object {
         loadImage()
 
     }
-    
-    required init(realm: RLMRealm, schema: RLMObjectSchema) {
-        super.init(realm: realm, schema: schema)
-    }
-    
-    required init(value: AnyObject, schema: RLMSchema) {
-        super.init(value: value, schema: schema)
-    }
-
-
     
     //EFFECTS:  creates politician bio from wikipedia
     //MODIFIES: bio

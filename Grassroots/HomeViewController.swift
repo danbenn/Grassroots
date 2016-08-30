@@ -9,7 +9,6 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-import RealmSwift
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -134,7 +133,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func electionCompletionHandler(response: Response<AnyObject, NSError>) {
         
-        print(response)
+        //print(response)
         if response.result.isFailure {
             
         }

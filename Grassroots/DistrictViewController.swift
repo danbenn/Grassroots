@@ -12,7 +12,6 @@ import Alamofire
 import SwiftyJSON
 import AlamofireImage
 import Kingfisher
-import RealmSwift
 
 class DistrictViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     

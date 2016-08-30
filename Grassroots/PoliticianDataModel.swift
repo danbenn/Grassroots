@@ -9,13 +9,11 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
-import RealmSwift
-import Realm
 
-class PoliticianDataModel : Object {
+class PoliticianDataModel {
     
-    var elections = List<Election>()
-    var politicians = List<Politician>()
+    var elections = [Election]()
+    var politicians = [Politician]()
     var userDistrict: District?
     
     dynamic let address = "233 Blackrock Rd"//"2123 Welcome Way" //"6578 Brookhills Ct SE"
@@ -23,19 +21,7 @@ class PoliticianDataModel : Object {
     dynamic let civicApiBaseURL = "https://www.googleapis.com/civicinfo/v2/"
     dynamic let apiKey = "?key=AIzaSyDnMrVJjPptjGc9KSDGkn_qZJ98wj_aZiQ"
     
-    required init() {
-        super.init()
-    }
     
-    required init(realm: RLMRealm, schema: RLMObjectSchema) {
-        super.init(realm: realm, schema: schema)
-    }
-    
-    required init(value: AnyObject, schema: RLMSchema) {
-        super.init(value: value, schema: schema)
-    }
-
-
     //REQUIRES: valid US voter address
     //EFFECTS:  gets current officials at local, state and federal level
     func politiciansAtAddress(completionHandler: (Response<AnyObject, NSError>) -> Void) {
@@ -65,22 +51,27 @@ class PoliticianDataModel : Object {
         let contests = result["contests"]
         for contest in contests.array! {
             let name = contest["type"].stringValue
+            let office = contest["office"].stringValue
             let district = contest["district"]["name"].stringValue
             let index = contest["ballotPlacement"].intValue
-            let candidates = contest["candidates"]
+            
+            print(contest["candidates"].isExists())
 
-            var people = List<Politician>()
+            var people = [Politician]()
             
-            parseCandidateJSON(candidates, people: &people)
-            
-            let election = Election(name: name, district: district, ballotIndex:
-                index, candidates: people)
+            if contest["candidates"].isExists() {
+                let candidates = contest["candidates"]
+                parseCandidateJSON(candidates, people: &people)
+            }
+
+            let election = Election(name: name, office: office,
+                district: district, ballotIndex: index, candidates: people)
             
             elections.append(election)
         }
     }
 
-    func parseCandidateJSON(candidates: JSON, inout people: List<Politician>) {
+    func parseCandidateJSON(candidates: JSON, inout people: [Politician]) {
         for candidate in candidates.array! {
             let name = candidate["name"].stringValue
             let party = candidate["party"].stringValue
@@ -141,7 +132,7 @@ class PoliticianDataModel : Object {
         for office in offices.array! {
             for person_index in office["officialIndices"].array! {
                 politicians[person_index.int!].office = office["name"].stringValue
-                print(office["name"].stringValue)
+                //print(office["name"].stringValue)
             }
         }
     }

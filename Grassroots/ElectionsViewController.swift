@@ -16,7 +16,6 @@ class ElectionsViewController: UIViewController {
     
     @IBOutlet weak var electionDate: UILabel!
     
-    
     var model: PoliticianDataModel
     
     //EFFECTS: initializes view controller

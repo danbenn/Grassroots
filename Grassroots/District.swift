@@ -8,9 +8,8 @@
 
 import Foundation
 import SwiftyJSON
-import RealmSwift
 
-class District : Object {
+class District {
     
     dynamic var city: String = ""
     dynamic var county: String = ""
