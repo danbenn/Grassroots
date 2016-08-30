@@ -7,14 +7,49 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1FB7445894701B5F449A5C65 /* Pods_Grassroots.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE7FB761CAEB3B3378097A4 /* Pods_Grassroots.framework */; };
+		FF258FD41D634F33005989C8 /* ElectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF258FD31D634F33005989C8 /* ElectionCell.swift */; };
+		FF258FD61D63E826005989C8 /* PoliticianCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF258FD51D63E826005989C8 /* PoliticianCell.swift */; };
+		FFC775CA1D7203180028534E /* District.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC775C91D7203180028534E /* District.swift */; };
+		FFC775CC1D7208CB0028534E /* Election.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC775CB1D7208CB0028534E /* Election.swift */; };
+		FFC775CE1D720D050028534E /* Referendum.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC775CD1D720D050028534E /* Referendum.swift */; };
+		FFC775D01D720EDB0028534E /* PollingPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC775CF1D720EDB0028534E /* PollingPlace.swift */; };
+		FFD8BA7F1D6495C700E43D00 /* launch_logo_full.png in Resources */ = {isa = PBXBuildFile; fileRef = FFD8BA7E1D6495C700E43D00 /* launch_logo_full.png */; };
+		FFEECBBD1D70CDEF00680367 /* PoliticianTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEECBBC1D70CDEF00680367 /* PoliticianTabController.swift */; };
+		FFF221211D67600B00556F3B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFF221201D67600B00556F3B /* CoreLocation.framework */; };
+		FFF221231D67838900556F3B /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF221221D67838900556F3B /* LocationCell.swift */; };
+		FFF221251D67861E00556F3B /* DistrictCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF221241D67861E00556F3B /* DistrictCell.swift */; };
+		FFF221271D67BAE700556F3B /* Politician.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF221261D67BAE700556F3B /* Politician.swift */; };
 		FFF85DAD1D627F4B00DCC0B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF85DAC1D627F4B00DCC0B3 /* AppDelegate.swift */; };
-		FFF85DAF1D627F4B00DCC0B3 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF85DAE1D627F4B00DCC0B3 /* FirstViewController.swift */; };
-		FFF85DB11D627F4B00DCC0B3 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF85DB01D627F4B00DCC0B3 /* SecondViewController.swift */; };
-		FFF85DB41D627F4B00DCC0B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFF85DB21D627F4B00DCC0B3 /* Main.storyboard */; };
 		FFF85DB61D627F4B00DCC0B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFF85DB51D627F4B00DCC0B3 /* Assets.xcassets */; };
-		FFF85DB91D627F4B00DCC0B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFF85DB71D627F4B00DCC0B3 /* LaunchScreen.storyboard */; };
 		FFF85DC41D627F4B00DCC0B3 /* GrassrootsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF85DC31D627F4B00DCC0B3 /* GrassrootsTests.swift */; };
 		FFF85DCF1D627F4B00DCC0B3 /* GrassrootsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF85DCE1D627F4B00DCC0B3 /* GrassrootsUITests.swift */; };
+		FFF85DDF1D627F7900DCC0B3 /* DistrictViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF85DDC1D627F7900DCC0B3 /* DistrictViewController.swift */; };
+		FFF85DE01D627F7900DCC0B3 /* ElectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF85DDD1D627F7900DCC0B3 /* ElectionsViewController.swift */; };
+		FFF85DE11D627F7900DCC0B3 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF85DDE1D627F7900DCC0B3 /* HomeViewController.swift */; };
+		FFF85DE31D627F8300DCC0B3 /* PoliticianDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF85DE21D627F8300DCC0B3 /* PoliticianDataModel.swift */; };
+		FFF85DE51D627F9400DCC0B3 /* PollingAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF85DE41D627F9400DCC0B3 /* PollingAddressViewController.swift */; };
+		FFF85DE71D627FB300DCC0B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFF85DE61D627FB300DCC0B3 /* Main.storyboard */; };
+		FFF85DE91D627FBF00DCC0B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFF85DE81D627FBF00DCC0B3 /* LaunchScreen.storyboard */; };
+		FFF85DF51D62819B00DCC0B3 /* checkbox.png in Resources */ = {isa = PBXBuildFile; fileRef = FFF85DF21D62819B00DCC0B3 /* checkbox.png */; };
+		FFF85DF61D62819B00DCC0B3 /* checkbox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFF85DF31D62819B00DCC0B3 /* checkbox@2x.png */; };
+		FFF85DF71D62819B00DCC0B3 /* checkbox@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFF85DF41D62819B00DCC0B3 /* checkbox@3x.png */; };
+		FFF85DFB1D6281B000DCC0B3 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = FFF85DF81D6281B000DCC0B3 /* home.png */; };
+		FFF85DFC1D6281B000DCC0B3 /* home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFF85DF91D6281B000DCC0B3 /* home@2x.png */; };
+		FFF85DFD1D6281B000DCC0B3 /* home@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFF85DFA1D6281B000DCC0B3 /* home@3x.png */; };
+		FFF85E011D6281B700DCC0B3 /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = FFF85DFE1D6281B700DCC0B3 /* location.png */; };
+		FFF85E021D6281B700DCC0B3 /* location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFF85DFF1D6281B700DCC0B3 /* location@2x.png */; };
+		FFF85E031D6281B700DCC0B3 /* location@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFF85E001D6281B700DCC0B3 /* location@3x.png */; };
+		FFF85E071D6281C000DCC0B3 /* locationpin.png in Resources */ = {isa = PBXBuildFile; fileRef = FFF85E041D6281C000DCC0B3 /* locationpin.png */; };
+		FFF85E081D6281C000DCC0B3 /* locationpin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFF85E051D6281C000DCC0B3 /* locationpin@2x.png */; };
+		FFF85E091D6281C000DCC0B3 /* locationpin@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFF85E061D6281C000DCC0B3 /* locationpin@3x.png */; };
+		FFF85E0D1D6281C800DCC0B3 /* politician.png in Resources */ = {isa = PBXBuildFile; fileRef = FFF85E0A1D6281C800DCC0B3 /* politician.png */; };
+		FFF85E0E1D6281C800DCC0B3 /* politician@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFF85E0B1D6281C800DCC0B3 /* politician@2x.png */; };
+		FFF85E0F1D6281C800DCC0B3 /* politician@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFF85E0C1D6281C800DCC0B3 /* politician@3x.png */; };
+		FFF85E131D6281D100DCC0B3 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = FFF85E101D6281D100DCC0B3 /* settings.png */; };
+		FFF85E141D6281D100DCC0B3 /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFF85E111D6281D100DCC0B3 /* settings@2x.png */; };
+		FFF85E151D6281D100DCC0B3 /* settings@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFF85E121D6281D100DCC0B3 /* settings@3x.png */; };
+		FFF85E171D6281F900DCC0B3 /* grassroots_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FFF85E161D6281F900DCC0B3 /* grassroots_logo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,13 +70,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		52FFF40ED3CF187D93D42663 /* Pods-Grassroots.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grassroots.release.xcconfig"; path = "Pods/Target Support Files/Pods-Grassroots/Pods-Grassroots.release.xcconfig"; sourceTree = "<group>"; };
+		606902916B4C0EFC4E64E639 /* Pods-Grassroots.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grassroots.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Grassroots/Pods-Grassroots.debug.xcconfig"; sourceTree = "<group>"; };
+		8BE7FB761CAEB3B3378097A4 /* Pods_Grassroots.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Grassroots.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF258FD31D634F33005989C8 /* ElectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElectionCell.swift; sourceTree = "<group>"; };
+		FF258FD51D63E826005989C8 /* PoliticianCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoliticianCell.swift; sourceTree = "<group>"; };
+		FFC775C91D7203180028534E /* District.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = District.swift; sourceTree = "<group>"; };
+		FFC775CB1D7208CB0028534E /* Election.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Election.swift; sourceTree = "<group>"; };
+		FFC775CD1D720D050028534E /* Referendum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Referendum.swift; sourceTree = "<group>"; };
+		FFC775CF1D720EDB0028534E /* PollingPlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollingPlace.swift; sourceTree = "<group>"; };
+		FFD8BA7E1D6495C700E43D00 /* launch_logo_full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch_logo_full.png; sourceTree = "<group>"; };
+		FFEECBBC1D70CDEF00680367 /* PoliticianTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoliticianTabController.swift; sourceTree = "<group>"; };
+		FFF221201D67600B00556F3B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		FFF221221D67838900556F3B /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
+		FFF221241D67861E00556F3B /* DistrictCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistrictCell.swift; sourceTree = "<group>"; };
+		FFF221261D67BAE700556F3B /* Politician.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Politician.swift; sourceTree = "<group>"; };
 		FFF85DA91D627F4B00DCC0B3 /* Grassroots.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Grassroots.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFF85DAC1D627F4B00DCC0B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FFF85DAE1D627F4B00DCC0B3 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		FFF85DB01D627F4B00DCC0B3 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
-		FFF85DB31D627F4B00DCC0B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FFF85DB51D627F4B00DCC0B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		FFF85DB81D627F4B00DCC0B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FFF85DBA1D627F4B00DCC0B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FFF85DBF1D627F4B00DCC0B3 /* GrassrootsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GrassrootsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFF85DC31D627F4B00DCC0B3 /* GrassrootsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrassrootsTests.swift; sourceTree = "<group>"; };
@@ -49,6 +95,32 @@
 		FFF85DCA1D627F4B00DCC0B3 /* GrassrootsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GrassrootsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFF85DCE1D627F4B00DCC0B3 /* GrassrootsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrassrootsUITests.swift; sourceTree = "<group>"; };
 		FFF85DD01D627F4B00DCC0B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FFF85DDC1D627F7900DCC0B3 /* DistrictViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistrictViewController.swift; sourceTree = "<group>"; };
+		FFF85DDD1D627F7900DCC0B3 /* ElectionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElectionsViewController.swift; sourceTree = "<group>"; };
+		FFF85DDE1D627F7900DCC0B3 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		FFF85DE21D627F8300DCC0B3 /* PoliticianDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoliticianDataModel.swift; sourceTree = "<group>"; };
+		FFF85DE41D627F9400DCC0B3 /* PollingAddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollingAddressViewController.swift; sourceTree = "<group>"; };
+		FFF85DE61D627FB300DCC0B3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		FFF85DE81D627FBF00DCC0B3 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FFF85DF21D62819B00DCC0B3 /* checkbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox.png; sourceTree = "<group>"; };
+		FFF85DF31D62819B00DCC0B3 /* checkbox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox@2x.png"; sourceTree = "<group>"; };
+		FFF85DF41D62819B00DCC0B3 /* checkbox@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox@3x.png"; sourceTree = "<group>"; };
+		FFF85DF81D6281B000DCC0B3 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
+		FFF85DF91D6281B000DCC0B3 /* home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home@2x.png"; sourceTree = "<group>"; };
+		FFF85DFA1D6281B000DCC0B3 /* home@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home@3x.png"; sourceTree = "<group>"; };
+		FFF85DFE1D6281B700DCC0B3 /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location.png; sourceTree = "<group>"; };
+		FFF85DFF1D6281B700DCC0B3 /* location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location@2x.png"; sourceTree = "<group>"; };
+		FFF85E001D6281B700DCC0B3 /* location@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location@3x.png"; sourceTree = "<group>"; };
+		FFF85E041D6281C000DCC0B3 /* locationpin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = locationpin.png; sourceTree = "<group>"; };
+		FFF85E051D6281C000DCC0B3 /* locationpin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "locationpin@2x.png"; sourceTree = "<group>"; };
+		FFF85E061D6281C000DCC0B3 /* locationpin@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "locationpin@3x.png"; sourceTree = "<group>"; };
+		FFF85E0A1D6281C800DCC0B3 /* politician.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = politician.png; sourceTree = "<group>"; };
+		FFF85E0B1D6281C800DCC0B3 /* politician@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "politician@2x.png"; sourceTree = "<group>"; };
+		FFF85E0C1D6281C800DCC0B3 /* politician@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "politician@3x.png"; sourceTree = "<group>"; };
+		FFF85E101D6281D100DCC0B3 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
+		FFF85E111D6281D100DCC0B3 /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
+		FFF85E121D6281D100DCC0B3 /* settings@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@3x.png"; sourceTree = "<group>"; };
+		FFF85E161D6281F900DCC0B3 /* grassroots_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grassroots_logo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +128,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFF221211D67600B00556F3B /* CoreLocation.framework in Frameworks */,
+				1FB7445894701B5F449A5C65 /* Pods_Grassroots.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +150,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		25EE13706DDF05C5A7416EA4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				606902916B4C0EFC4E64E639 /* Pods-Grassroots.debug.xcconfig */,
+				52FFF40ED3CF187D93D42663 /* Pods-Grassroots.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F2C26C3A49EBE12C67336B1A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FFF221201D67600B00556F3B /* CoreLocation.framework */,
+				8BE7FB761CAEB3B3378097A4 /* Pods_Grassroots.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FFF85DA01D627F4B00DCC0B3 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +175,8 @@
 				FFF85DC21D627F4B00DCC0B3 /* GrassrootsTests */,
 				FFF85DCD1D627F4B00DCC0B3 /* GrassrootsUITests */,
 				FFF85DAA1D627F4B00DCC0B3 /* Products */,
+				25EE13706DDF05C5A7416EA4 /* Pods */,
+				F2C26C3A49EBE12C67336B1A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,13 +193,11 @@
 		FFF85DAB1D627F4B00DCC0B3 /* Grassroots */ = {
 			isa = PBXGroup;
 			children = (
-				FFF85DAC1D627F4B00DCC0B3 /* AppDelegate.swift */,
-				FFF85DAE1D627F4B00DCC0B3 /* FirstViewController.swift */,
-				FFF85DB01D627F4B00DCC0B3 /* SecondViewController.swift */,
-				FFF85DB21D627F4B00DCC0B3 /* Main.storyboard */,
-				FFF85DB51D627F4B00DCC0B3 /* Assets.xcassets */,
-				FFF85DB71D627F4B00DCC0B3 /* LaunchScreen.storyboard */,
-				FFF85DBA1D627F4B00DCC0B3 /* Info.plist */,
+				FFF85DEC1D627FFE00DCC0B3 /* Models */,
+				FFF85DF01D62812700DCC0B3 /* Views */,
+				FFF85DEA1D627FDC00DCC0B3 /* Controllers */,
+				FFF85DEE1D6280F300DCC0B3 /* Resources */,
+				FFF85DED1D62805700DCC0B3 /* Supporting Files */,
 			);
 			path = Grassroots;
 			sourceTree = "<group>";
@@ -128,6 +220,89 @@
 			path = GrassrootsUITests;
 			sourceTree = "<group>";
 		};
+		FFF85DEA1D627FDC00DCC0B3 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FFF85DDE1D627F7900DCC0B3 /* HomeViewController.swift */,
+				FFF85DDD1D627F7900DCC0B3 /* ElectionsViewController.swift */,
+				FFF85DE41D627F9400DCC0B3 /* PollingAddressViewController.swift */,
+				FFF85DDC1D627F7900DCC0B3 /* DistrictViewController.swift */,
+				FFEECBBC1D70CDEF00680367 /* PoliticianTabController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		FFF85DEC1D627FFE00DCC0B3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FFF85DE21D627F8300DCC0B3 /* PoliticianDataModel.swift */,
+				FFF221261D67BAE700556F3B /* Politician.swift */,
+				FFC775C91D7203180028534E /* District.swift */,
+				FFC775CB1D7208CB0028534E /* Election.swift */,
+				FFC775CD1D720D050028534E /* Referendum.swift */,
+				FFC775CF1D720EDB0028534E /* PollingPlace.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		FFF85DED1D62805700DCC0B3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FFF85DBA1D627F4B00DCC0B3 /* Info.plist */,
+				FFF85DAC1D627F4B00DCC0B3 /* AppDelegate.swift */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FFF85DEE1D6280F300DCC0B3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FFF85DF11D62817600DCC0B3 /* Images */,
+				FFF85DB51D627F4B00DCC0B3 /* Assets.xcassets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		FFF85DF01D62812700DCC0B3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FFF85DE61D627FB300DCC0B3 /* Main.storyboard */,
+				FFF85DE81D627FBF00DCC0B3 /* LaunchScreen.storyboard */,
+				FF258FD31D634F33005989C8 /* ElectionCell.swift */,
+				FF258FD51D63E826005989C8 /* PoliticianCell.swift */,
+				FFF221221D67838900556F3B /* LocationCell.swift */,
+				FFF221241D67861E00556F3B /* DistrictCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		FFF85DF11D62817600DCC0B3 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				FFD8BA7E1D6495C700E43D00 /* launch_logo_full.png */,
+				FFF85E161D6281F900DCC0B3 /* grassroots_logo.png */,
+				FFF85E101D6281D100DCC0B3 /* settings.png */,
+				FFF85E111D6281D100DCC0B3 /* settings@2x.png */,
+				FFF85E121D6281D100DCC0B3 /* settings@3x.png */,
+				FFF85E0A1D6281C800DCC0B3 /* politician.png */,
+				FFF85E0B1D6281C800DCC0B3 /* politician@2x.png */,
+				FFF85E0C1D6281C800DCC0B3 /* politician@3x.png */,
+				FFF85E041D6281C000DCC0B3 /* locationpin.png */,
+				FFF85E051D6281C000DCC0B3 /* locationpin@2x.png */,
+				FFF85E061D6281C000DCC0B3 /* locationpin@3x.png */,
+				FFF85DFE1D6281B700DCC0B3 /* location.png */,
+				FFF85DFF1D6281B700DCC0B3 /* location@2x.png */,
+				FFF85E001D6281B700DCC0B3 /* location@3x.png */,
+				FFF85DF81D6281B000DCC0B3 /* home.png */,
+				FFF85DF91D6281B000DCC0B3 /* home@2x.png */,
+				FFF85DFA1D6281B000DCC0B3 /* home@3x.png */,
+				FFF85DF21D62819B00DCC0B3 /* checkbox.png */,
+				FFF85DF31D62819B00DCC0B3 /* checkbox@2x.png */,
+				FFF85DF41D62819B00DCC0B3 /* checkbox@3x.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +310,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FFF85DD31D627F4B00DCC0B3 /* Build configuration list for PBXNativeTarget "Grassroots" */;
 			buildPhases = (
+				A4EDF3F11D32317E6AFC0032 /* [CP] Check Pods Manifest.lock */,
 				FFF85DA51D627F4B00DCC0B3 /* Sources */,
 				FFF85DA61D627F4B00DCC0B3 /* Frameworks */,
 				FFF85DA71D627F4B00DCC0B3 /* Resources */,
+				889C7868FE875837571D5E16 /* [CP] Embed Pods Frameworks */,
+				3E9FE4B91EFB43A96201ECA4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -196,6 +374,12 @@
 				TargetAttributes = {
 					FFF85DA81D627F4B00DCC0B3 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = BGS2DQVW2M;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					FFF85DBE1D627F4B00DCC0B3 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -232,9 +416,29 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFF85DB91D627F4B00DCC0B3 /* LaunchScreen.storyboard in Resources */,
+				FFF85DE91D627FBF00DCC0B3 /* LaunchScreen.storyboard in Resources */,
+				FFF85E151D6281D100DCC0B3 /* settings@3x.png in Resources */,
+				FFF85DFC1D6281B000DCC0B3 /* home@2x.png in Resources */,
+				FFD8BA7F1D6495C700E43D00 /* launch_logo_full.png in Resources */,
+				FFF85E091D6281C000DCC0B3 /* locationpin@3x.png in Resources */,
+				FFF85E071D6281C000DCC0B3 /* locationpin.png in Resources */,
+				FFF85E0E1D6281C800DCC0B3 /* politician@2x.png in Resources */,
+				FFF85E141D6281D100DCC0B3 /* settings@2x.png in Resources */,
+				FFF85E011D6281B700DCC0B3 /* location.png in Resources */,
+				FFF85E131D6281D100DCC0B3 /* settings.png in Resources */,
+				FFF85DFD1D6281B000DCC0B3 /* home@3x.png in Resources */,
+				FFF85E0F1D6281C800DCC0B3 /* politician@3x.png in Resources */,
+				FFF85E081D6281C000DCC0B3 /* locationpin@2x.png in Resources */,
+				FFF85E021D6281B700DCC0B3 /* location@2x.png in Resources */,
+				FFF85DE71D627FB300DCC0B3 /* Main.storyboard in Resources */,
+				FFF85E031D6281B700DCC0B3 /* location@3x.png in Resources */,
+				FFF85DFB1D6281B000DCC0B3 /* home.png in Resources */,
+				FFF85DF71D62819B00DCC0B3 /* checkbox@3x.png in Resources */,
+				FFF85DF61D62819B00DCC0B3 /* checkbox@2x.png in Resources */,
+				FFF85E0D1D6281C800DCC0B3 /* politician.png in Resources */,
+				FFF85DF51D62819B00DCC0B3 /* checkbox.png in Resources */,
 				FFF85DB61D627F4B00DCC0B3 /* Assets.xcassets in Resources */,
-				FFF85DB41D627F4B00DCC0B3 /* Main.storyboard in Resources */,
+				FFF85E171D6281F900DCC0B3 /* grassroots_logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,14 +458,75 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3E9FE4B91EFB43A96201ECA4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Grassroots/Pods-Grassroots-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		889C7868FE875837571D5E16 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Grassroots/Pods-Grassroots-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A4EDF3F11D32317E6AFC0032 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FFF85DA51D627F4B00DCC0B3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFF85DB11D627F4B00DCC0B3 /* SecondViewController.swift in Sources */,
+				FFC775CC1D7208CB0028534E /* Election.swift in Sources */,
+				FFF85DE01D627F7900DCC0B3 /* ElectionsViewController.swift in Sources */,
+				FFF221271D67BAE700556F3B /* Politician.swift in Sources */,
+				FFF85DDF1D627F7900DCC0B3 /* DistrictViewController.swift in Sources */,
+				FFF221251D67861E00556F3B /* DistrictCell.swift in Sources */,
+				FFF85DE51D627F9400DCC0B3 /* PollingAddressViewController.swift in Sources */,
+				FF258FD61D63E826005989C8 /* PoliticianCell.swift in Sources */,
+				FFC775D01D720EDB0028534E /* PollingPlace.swift in Sources */,
+				FFC775CA1D7203180028534E /* District.swift in Sources */,
 				FFF85DAD1D627F4B00DCC0B3 /* AppDelegate.swift in Sources */,
-				FFF85DAF1D627F4B00DCC0B3 /* FirstViewController.swift in Sources */,
+				FFF85DE31D627F8300DCC0B3 /* PoliticianDataModel.swift in Sources */,
+				FFF85DE11D627F7900DCC0B3 /* HomeViewController.swift in Sources */,
+				FF258FD41D634F33005989C8 /* ElectionCell.swift in Sources */,
+				FFC775CE1D720D050028534E /* Referendum.swift in Sources */,
+				FFF221231D67838900556F3B /* LocationCell.swift in Sources */,
+				FFEECBBD1D70CDEF00680367 /* PoliticianTabController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,25 +560,6 @@
 			targetProxy = FFF85DCB1D627F4B00DCC0B3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		FFF85DB21D627F4B00DCC0B3 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FFF85DB31D627F4B00DCC0B3 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		FFF85DB71D627F4B00DCC0B3 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FFF85DB81D627F4B00DCC0B3 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		FFF85DD11D627F4B00DCC0B3 /* Debug */ = {
@@ -403,23 +649,31 @@
 		};
 		FFF85DD41D627F4B00DCC0B3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 606902916B4C0EFC4E64E639 /* Pods-Grassroots.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Grassroots/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = teamfred.Grassroots;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
 		FFF85DD51D627F4B00DCC0B3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52FFF40ED3CF187D93D42663 /* Pods-Grassroots.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Grassroots/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = teamfred.Grassroots;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -488,6 +742,7 @@
 				FFF85DD51D627F4B00DCC0B3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FFF85DD61D627F4B00DCC0B3 /* Build configuration list for PBXNativeTarget "GrassrootsTests" */ = {
 			isa = XCConfigurationList;
@@ -496,6 +751,7 @@
 				FFF85DD81D627F4B00DCC0B3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FFF85DD91D627F4B00DCC0B3 /* Build configuration list for PBXNativeTarget "GrassrootsUITests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +760,7 @@
 				FFF85DDB1D627F4B00DCC0B3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

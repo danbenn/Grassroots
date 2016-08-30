@@ -7,17 +7,41 @@
 //
 
 import UIKit
+import GoogleMaps
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        //GMSServices.provideAPIKey("AIzaSyCshesYsL3_MkD6iTRjQlAI5wi9urX1fXc")
+        //application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge], categories: nil))
+        //UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
+        
+        
         return true
     }
+    
+    //EFFECTS: updates election data and notifies user of new elections
+    func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+       
+        if let tabBarController = window?.rootViewController as? UITabBarController,
+            viewControllers = tabBarController.viewControllers! as? [UIViewController] {
+            for viewController in viewControllers {
+                if let homeViewController = viewController as? HomeViewController {
+                    
+                    homeViewController.tbc.model.getElections(homeViewController.electionCompletionHandler)
+                    
+                    
+                
+                }
+            }
+        }
+    }
+    
+    
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
