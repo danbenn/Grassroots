@@ -53,7 +53,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.statusLabel!.text = "Upcoming Elections"
             cell.subHeader!.text = "no elections in your area for the next 2-4 weeks"
             cell.lowerSubHeader!.text = "we'll send a notification before the next one comes up!"
-            
         }
         else {
             cell.statusLabel!.text = "You have \(tbc.model.elections.count) upcoming elections"
@@ -82,7 +81,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = self.newsFeedTable.dequeueReusableCellWithIdentifier("DistrictCell") as! DistrictCell!
         
         if let place = tbc.model.userDistrict {
-            
             cell.user_city?.text = place.city + " (" + place.county + ")"
 
             cell.user_congressional_district?.text = place.congressional_district
@@ -98,7 +96,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
         if indexPath.row == 0 {
             return electionCellDelegate()
         }
@@ -108,10 +105,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         if indexPath.row == 2 {
             return districtCellDelegate()
         }
-            
-    
         return UITableViewCell()
-        
     }
     
     private func createRoundLabel(inout label: UILabel) {
@@ -132,7 +126,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     
     func electionCompletionHandler(response: Response<AnyObject, NSError>) {
-        
         //print(response)
         if response.result.isFailure {
             

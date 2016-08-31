@@ -10,6 +10,7 @@
 		1FB7445894701B5F449A5C65 /* Pods_Grassroots.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE7FB761CAEB3B3378097A4 /* Pods_Grassroots.framework */; };
 		FF258FD41D634F33005989C8 /* ElectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF258FD31D634F33005989C8 /* ElectionCell.swift */; };
 		FF258FD61D63E826005989C8 /* PoliticianCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF258FD51D63E826005989C8 /* PoliticianCell.swift */; };
+		FF852BE61D75F8E300653C49 /* ContestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF852BE51D75F8E300653C49 /* ContestCell.swift */; };
 		FFC775CA1D7203180028534E /* District.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC775C91D7203180028534E /* District.swift */; };
 		FFC775CC1D7208CB0028534E /* Election.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC775CB1D7208CB0028534E /* Election.swift */; };
 		FFC775CE1D720D050028534E /* Referendum.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC775CD1D720D050028534E /* Referendum.swift */; };
@@ -75,6 +76,7 @@
 		8BE7FB761CAEB3B3378097A4 /* Pods_Grassroots.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Grassroots.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF258FD31D634F33005989C8 /* ElectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElectionCell.swift; sourceTree = "<group>"; };
 		FF258FD51D63E826005989C8 /* PoliticianCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoliticianCell.swift; sourceTree = "<group>"; };
+		FF852BE51D75F8E300653C49 /* ContestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContestCell.swift; sourceTree = "<group>"; };
 		FFC775C91D7203180028534E /* District.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = District.swift; sourceTree = "<group>"; };
 		FFC775CB1D7208CB0028534E /* Election.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Election.swift; sourceTree = "<group>"; };
 		FFC775CD1D720D050028534E /* Referendum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Referendum.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 				FF258FD51D63E826005989C8 /* PoliticianCell.swift */,
 				FFF221221D67838900556F3B /* LocationCell.swift */,
 				FFF221241D67861E00556F3B /* DistrictCell.swift */,
+				FF852BE51D75F8E300653C49 /* ContestCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -526,6 +529,7 @@
 				FF258FD41D634F33005989C8 /* ElectionCell.swift in Sources */,
 				FFC775CE1D720D050028534E /* Referendum.swift in Sources */,
 				FFF221231D67838900556F3B /* LocationCell.swift in Sources */,
+				FF852BE61D75F8E300653C49 /* ContestCell.swift in Sources */,
 				FFEECBBD1D70CDEF00680367 /* PoliticianTabController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

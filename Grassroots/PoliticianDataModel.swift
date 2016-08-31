@@ -55,7 +55,7 @@ class PoliticianDataModel {
             let district = contest["district"]["name"].stringValue
             let index = contest["ballotPlacement"].intValue
             
-            print(contest["candidates"].isExists())
+            //print(contest["candidates"].isExists())
 
             var people = [Politician]()
             
@@ -121,6 +121,7 @@ class PoliticianDataModel {
                 politicians.append(Politician(name: name, party: party, imageURL: imageURL))
             }
             else {
+                
                 politicians.append(Politician(name: name, party: party))
             }
         }

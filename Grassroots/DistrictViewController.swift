@@ -56,7 +56,6 @@ class DistrictViewController: UIViewController, UITableViewDelegate, UITableView
         cell.politicianTitle?.attributedText = myAttributedString
         
         let filename = person.name.removeWhitespace()
-        
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
         let getImagePath = paths.stringByAppendingPathComponent(filename)
         let image = UIImage(contentsOfFile: getImagePath)
