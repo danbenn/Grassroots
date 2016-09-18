@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,10 +14,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        //GMSServices.provideAPIKey("AIzaSyCshesYsL3_MkD6iTRjQlAI5wi9urX1fXc")
+        
         //application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge], categories: nil))
         //UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
-        
         
         return true
     }
@@ -29,9 +27,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let tabBarController = window?.rootViewController as? UITabBarController,
             viewControllers = tabBarController.viewControllers! as? [UIViewController] {
             for viewController in viewControllers {
-                if let homeViewController = viewController as? HomeViewController {
+                if viewController is HomeViewController {
                     
-                    homeViewController.tbc.model.getElections(homeViewController.electionCompletionHandler)
+                    //homeViewController.tbc.model.getElections(homeViewController.electionCompletionHandler)
                     
                     
                 
