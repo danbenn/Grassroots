@@ -15,7 +15,7 @@ UITableViewDelegate, UITableViewDataSource {
   
   @IBOutlet weak var tableView: UITableView!
   
-  @IBAction func referendumDetails(sender: AnyObject) {
+  @IBAction func referendumDetails(_ sender: AnyObject) {
     model.openReferendumURL()
   }
   
@@ -38,16 +38,16 @@ UITableViewDelegate, UITableViewDataSource {
     
   }
   
-  func tableView(tableView: UITableView, numberOfRowsInSection section:
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section:
     Int) -> Int {
     return model.elections.count + model.referendums.count
   }
   
-  func initializeContestCell(inout cell: ContestCell, indexPath: NSIndexPath) {
-    cell.office?.text = model.elections[indexPath.row].office
+  func initializeContestCell(_ cell: inout ContestCell, indexPath: IndexPath) {
+    cell.office?.text = model.elections[(indexPath as NSIndexPath).row].office
     
-    let democrat   = model.elections[indexPath.row].democraticCandidate
-    let republican = model.elections[indexPath.row].republicanCandidate
+    let democrat   = model.elections[(indexPath as NSIndexPath).row].democraticCandidate
+    let republican = model.elections[(indexPath as NSIndexPath).row].republicanCandidate
     
     cell.democrat_name?.text = democrat.name
     cell.democrat_initials?.text = democrat.initials
@@ -70,27 +70,27 @@ UITableViewDelegate, UITableViewDataSource {
     
   }
   
-  func tableView(tableView: UITableView, cellForRowAtIndexPath
-    indexPath: NSIndexPath) -> UITableViewCell {
+  func tableView(_ tableView: UITableView, cellForRowAt
+    indexPath: IndexPath) -> UITableViewCell {
     
-    if indexPath.row < model.elections.count {
-      var cell = self.tableView.dequeueReusableCellWithIdentifier(
-        "ContestCell") as! ContestCell
+    if (indexPath as NSIndexPath).row < model.elections.count {
+      var cell = self.tableView.dequeueReusableCell(
+        withIdentifier: "ContestCell") as! ContestCell
       initializeContestCell(&cell, indexPath: indexPath)
       return cell
       
     }
-    else if indexPath.row == model.elections.count {
-      let cell = self.tableView.dequeueReusableCellWithIdentifier(
-        "referendumTitleCell") as! ReferendumCell
+    else if (indexPath as NSIndexPath).row == model.elections.count {
+      let cell = self.tableView.dequeueReusableCell(
+        withIdentifier: "referendumTitleCell") as! ReferendumCell
       
       return cell
     }
     else {
-      let cell = self.tableView.dequeueReusableCellWithIdentifier(
-        "referendumContentCell") as! ReferendumCell
-      let ref = model.referendums[indexPath.row - model.elections.count - 1]
-      let text = ref.title.capitalizedString + " - " + ref.subtitle.lowercaseString
+      let cell = self.tableView.dequeueReusableCell(
+        withIdentifier: "referendumContentCell") as! ReferendumCell
+      let ref = model.referendums[(indexPath as NSIndexPath).row - model.elections.count - 1]
+      let text = ref.title.capitalized + " - " + ref.subtitle.lowercased()
       
       let myAttributedString = NSMutableAttributedString(
         string: text,
@@ -103,12 +103,12 @@ UITableViewDelegate, UITableViewDataSource {
     }
   }
   
-  func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath:
-    NSIndexPath) -> CGFloat {
-    if indexPath.row < model.elections.count {
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath:
+    IndexPath) -> CGFloat {
+    if (indexPath as NSIndexPath).row < model.elections.count {
       return 190
     }
-    else if indexPath.row == model.elections.count {
+    else if (indexPath as NSIndexPath).row == model.elections.count {
       return 90
     }
     else {
@@ -116,23 +116,23 @@ UITableViewDelegate, UITableViewDataSource {
     }
   }
   
-  func createRoundImageView(imageView: UIImageView) {
+  func createRoundImageView(_ imageView: UIImageView) {
     imageView.layer.cornerRadius = imageView.frame.size.width / 2;
     imageView.clipsToBounds = true
     imageView.layer.borderWidth = 1
-    imageView.layer.borderColor = UIColor.greenColor().CGColor
+    imageView.layer.borderColor = UIColor.green.cgColor
   }
   
   
-  private func createRoundLabel(label: UILabel) {
+  fileprivate func createRoundLabel(_ label: UILabel) {
     label.layer.cornerRadius = label.frame.size.width / 2;
     label.clipsToBounds = true
     label.layer.borderWidth = 1
-    label.layer.borderColor = UIColor.greenColor().CGColor
+    label.layer.borderColor = UIColor.green.cgColor
   }
   
   func refreshUI() {
-    dispatch_async(dispatch_get_main_queue(),{
+    DispatchQueue.main.async(execute: {
       //self.myTableView.reloadData()
     });
   }
@@ -145,27 +145,28 @@ UITableViewDelegate, UITableViewDataSource {
 extension String {
   
   subscript (i: Int) -> Character {
-    return self[self.startIndex.advancedBy(i)]
+    return self[self.characters.index(self.startIndex, offsetBy: i)]
   }
   
   subscript (i: Int) -> String {
     return String(self[i] as Character)
   }
   
+  /*
   subscript (r: Range<Int>) -> String {
-    let start = startIndex.advancedBy(r.startIndex)
-    let end = start.advancedBy(r.endIndex - r.startIndex)
+    let start = characters.index(startIndex, offsetBy: r.lowerBound)
+    let end = start.index(start, offsetBy: r.upperBound - r.lowerBound)
     return self[Range(start ..< end)]
   }
-  
+  */
   var html2AttributedString: NSAttributedString? {
     guard
-      let data = dataUsingEncoding(NSUTF8StringEncoding)
+      let data = data(using: String.Encoding.utf8)
       else { return nil }
     do {
       return try NSAttributedString(data: data, options:
         [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType,
-          NSCharacterEncodingDocumentAttribute:NSUTF8StringEncoding],
+          NSCharacterEncodingDocumentAttribute:String.Encoding.utf8],
                                     documentAttributes: nil)
     } catch let error as NSError {
       print(error.localizedDescription)

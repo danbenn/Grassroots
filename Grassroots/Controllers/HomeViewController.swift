@@ -20,6 +20,7 @@ UITableViewDataSource {
   //EFFECTS: initializes view controller
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
+
   }
   
   
@@ -33,8 +34,8 @@ UITableViewDataSource {
   }
   
   //EFFECTS: passes poll API response to the PoliticianDataModel
-  private func pollCompletionHandler(response:
-    Response<AnyObject, NSError>) {
+  fileprivate func pollCompletionHandler(_ response:
+    DataResponse<Any>) {
     if let result: JSON = JSON(response.result.value!) {
       tbc.model.parsePollJSON(result)
       refreshUI()
@@ -42,25 +43,25 @@ UITableViewDataSource {
   }
   
   //EFFECTS: passes election API response to the PoliticianDataModel
-  private func electionCompletionHandler(response:
-    Response<AnyObject, NSError>) {
+  fileprivate func electionCompletionHandler(_ response:
+    DataResponse<Any>) {
     if let result: JSON = JSON(response.result.value!) {
       tbc.model.parseElectionJSON(result)
       refreshUI()
     }
   }
   //EFFECTS: passes politician API response to the PoliticianDataModel
-  private func politicianCompletionHandler(response:
-    Response<AnyObject, NSError>) {
+  fileprivate func politicianCompletionHandler(_ response:
+    DataResponse<Any>) {
     if let result: JSON = JSON(response.result.value!) {
       tbc.model.parsePoliticianJSON(result)
       refreshUI()
     }
   }
   
-  func tableView(tableView: UITableView, cellForRowAtIndexPath
-    indexPath: NSIndexPath) -> UITableViewCell {
-    switch indexPath.row {
+  func tableView(_ tableView: UITableView, cellForRowAt
+    indexPath: IndexPath) -> UITableViewCell {
+    switch (indexPath as NSIndexPath).row {
     case 0: return electionCellDelegate()
     case 1: return locationCellDelegate()
     case 2: return districtCellDelegate()
@@ -68,88 +69,88 @@ UITableViewDataSource {
     }
   }
   
-  private func electionCellDelegate() -> ElectionCell {
-    let cell = self.newsFeedTable.dequeueReusableCellWithIdentifier(
-      "ElectionCell") as! ElectionCell!
+  fileprivate func electionCellDelegate() -> ElectionCell {
+    let cell = self.newsFeedTable.dequeueReusableCell(
+      withIdentifier: "ElectionCell") as! ElectionCell!
     
-    cell.calendarDayLabel!.layer.borderColor =
-      UIColor.lightGrayColor().CGColor
-    cell.calendarDayLabel!.layer.borderWidth = 1
+    cell?.calendarDayLabel!.layer.borderColor =
+      UIColor.lightGray.cgColor
+    cell?.calendarDayLabel!.layer.borderWidth = 1
     
     if tbc.model.elections.count == 0 {
-      cell.subHeader!.text = "no elections in the next 2-4 weeks"
+      cell?.subHeader!.text = "no elections in the next 2-4 weeks"
       //cell.lowerSubHeader!.text = "Notifications are: on"
     }
     else {
       if let name = tbc.model.electionName {
-        cell.statusLabel!.text = name
+        cell?.statusLabel!.text = name
       }
       if let date = tbc.model.electionDate {
-        cell.calendarDayLabel!.text = date.day
-        cell.calendarMonthLabel!.text = date.MMM
+        cell?.calendarDayLabel!.text = date.day
+        cell?.calendarMonthLabel!.text = date.MMM
         
       }
-      cell.subHeader!.text =
+      cell?.subHeader!.text =
         "There are \(tbc.model.elections.count) upcoming contests"
       //cell.lowerSubHeader!.text = "Notifications are: on"
     }
-    return cell
+    return cell!
     
   }
   
-  private func locationCellDelegate() -> LocationCell {
-    let cell = self.newsFeedTable.dequeueReusableCellWithIdentifier(
-      "LocationCell") as! LocationCell!
+  fileprivate func locationCellDelegate() -> LocationCell {
+    let cell = self.newsFeedTable.dequeueReusableCell(
+      withIdentifier: "LocationCell") as! LocationCell!
     
     if let location = tbc.model.pollingPlace {
-      cell.locationName?.text = location.name
-      cell.locationAddress?.text = location.line1
+      cell?.locationName?.text = location.name
+      cell?.locationAddress?.text = location.line1
     }
     else {
       if let available = tbc.model.civicAPI.status.pollingAddress {
         if !available {
-          cell.locationName?.text = "currently unavailable"
+          cell?.locationName?.text = "currently unavailable"
         }
         
       }
     }
     
-    return cell
+    return cell!
   }
   
-  private func districtCellDelegate() -> DistrictCell {
-    let cell = self.newsFeedTable.dequeueReusableCellWithIdentifier(
-      "DistrictCell") as! DistrictCell!
+  fileprivate func districtCellDelegate() -> DistrictCell {
+    let cell = self.newsFeedTable.dequeueReusableCell(
+      withIdentifier: "DistrictCell") as! DistrictCell!
     
     if let available = tbc.model.civicAPI.status.district {
       if !available {
-        cell.user_city?.text = "currently unavailable"
+        cell?.user_city?.text = "currently unavailable"
       }
     }
     
     if let place = tbc.model.userDistrict {
       if place.city != "" && place.county != "" {
-        cell.user_city?.text = place.city + " (" + place.county + ")"
+        cell?.user_city?.text = place.city + " (" + place.county + ")"
       }
-      cell.user_congressional_district?.text = place.congressional_district
-      cell.user_state_house_district?.text = place.state_house_district
-      cell.user_state_senate_district?.text = place.state_senate_district
+      cell?.user_congressional_district?.text = place.congressional_district
+      cell?.user_state_house_district?.text = place.state_house_district
+      cell?.user_state_senate_district?.text = place.state_senate_district
     }
     
     
-    return cell
+    return cell!
   }
   
-  private func createRoundLabel(inout label: UILabel) {
+  fileprivate func createRoundLabel(_ label: inout UILabel) {
     label.layer.cornerRadius = label.frame.size.width / 2;
     label.clipsToBounds = true
     label.layer.borderWidth = 2
-    label.layer.borderColor = UIColor.greenColor().CGColor
+    label.layer.borderColor = UIColor.green.cgColor
   }
   
-  func tableView(tableView: UITableView, heightForRowAtIndexPath
-    indexPath: NSIndexPath) -> CGFloat {
-    switch indexPath.row {
+  func tableView(_ tableView: UITableView, heightForRowAt
+    indexPath: IndexPath) -> CGFloat {
+    switch (indexPath as NSIndexPath).row {
     case 0: return 115
     case 1: return 115
     case 2: return 175
@@ -158,23 +159,23 @@ UITableViewDataSource {
   }
   
   func refreshUI() {
-    dispatch_async(dispatch_get_main_queue(),{
+    DispatchQueue.main.async(execute: {
       self.newsFeedTable.reloadData()
     });
   }
   
   
-  func tableView(tableView: UITableView, numberOfRowsInSection section:
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section:
     Int) -> Int {
     return 3
   }
   
   func readJSONFromFile() {
-    if let path = NSBundle.mainBundle().pathForResource(
-      "assets/test", ofType: "json") {
+    if let path = Bundle.main.path(
+      forResource: "assets/test", ofType: "json") {
       do {
-        let data = try NSData(contentsOfURL: NSURL(fileURLWithPath: path),
-                              options: NSDataReadingOptions.DataReadingMappedIfSafe)
+        let data = try Data(contentsOf: URL(fileURLWithPath: path),
+                              options: NSData.ReadingOptions.mappedIfSafe)
         let jsonObj = JSON(data: data)
         if jsonObj != JSON.null {
           print("jsonData:\(jsonObj)")

@@ -34,17 +34,17 @@ UITableViewDataSource {
     
   }
   
-  func tableView(tableView: UITableView,
+  func tableView(_ tableView: UITableView,
                  numberOfRowsInSection section: Int) -> Int {
     return model.politicians.count
   }
   
-  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath:
-    NSIndexPath) -> UITableViewCell {
-    let cell = self.politicianTable.dequeueReusableCellWithIdentifier(
-      cellReuseIdentifier) as! PoliticianCell
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath:
+    IndexPath) -> UITableViewCell {
+    let cell = self.politicianTable.dequeueReusableCell(
+      withIdentifier: cellReuseIdentifier) as! PoliticianCell
     
-    let person = model.politicians[indexPath.row]
+    let person = model.politicians[(indexPath as NSIndexPath).row]
     
     cell.politicianName?.text = person.name
     
@@ -56,12 +56,12 @@ UITableViewDataSource {
     
     cell.politicianTitle?.attributedText = myAttributedString
     
-    if let image = model.politicians[indexPath.row].image {
+    if let image = model.politicians[(indexPath as NSIndexPath).row].image {
       cell.politicianImage.image = image
       createRoundImageView(cell)
     }
     else {
-      cell.initials?.text = model.politicians[indexPath.row].initials
+      cell.initials?.text = model.politicians[(indexPath as NSIndexPath).row].initials
       cell.politicianImage.image = nil
     }
     
@@ -73,24 +73,24 @@ UITableViewDataSource {
   }
   
   //EFFECTS: rounds ImageView, adds bright green border
-  func createRoundImageView(cell: PoliticianCell) {
+  func createRoundImageView(_ cell: PoliticianCell) {
     cell.politicianImage.layer.cornerRadius =
       cell.politicianImage.frame.size.width / 2;
     cell.politicianImage.clipsToBounds = true
     cell.politicianImage.layer.borderWidth = 2
-    cell.politicianImage.layer.borderColor = UIColor.greenColor().CGColor
+    cell.politicianImage.layer.borderColor = UIColor.green.cgColor
   }
   
   //EFFECTS: rounds label, adds bright green border
-  private func createRoundLabel(label: UILabel) {
+  fileprivate func createRoundLabel(_ label: UILabel) {
     label.layer.cornerRadius = label.frame.size.width / 2;
     label.clipsToBounds = true
     label.layer.borderWidth = 1
-    label.layer.borderColor = UIColor.greenColor().CGColor
+    label.layer.borderColor = UIColor.green.cgColor
   }
   
   func refreshUI() {
-    dispatch_async(dispatch_get_main_queue(),{
+    DispatchQueue.main.async(execute: {
       self.politicianTable.reloadData()
     });
   }

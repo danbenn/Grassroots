@@ -20,7 +20,7 @@ class Politician {
   var image: UIImage!
   var imageURL: String!
   
-  private var facebookID: String = ""
+  fileprivate var facebookID: String = ""
   
   lazy var initials: String = {
     [unowned self] in
@@ -62,15 +62,15 @@ class Politician {
   
   //EFFECTS:  creates politician bio from wikipedia
   //MODIFIES: bio
-  private func findWikipediaInfo() {
+  fileprivate func findWikipediaInfo() {
     
-    let separated_names = name.componentsSeparatedByString(" ")
+    let separated_names = name.components(separatedBy: " ")
     
     let first_last = separated_names.first! + " " + separated_names.last!
     
     //print(first_last)
     
-    let web_ready_name = first_last.stringByReplacingOccurrencesOfString(" ", withString: "%20")
+    let web_ready_name = first_last.replacingOccurrences(of: " ", with: "%20")
     let summaryURL = "https://en.wikipedia.org/w/api.php!format=json&action=query&prop=extracts" +
       "&redirects=1&exintro=&explaintext=&titles=\(web_ready_name)"
     _ = "https://en.wikipedia.org/w/api.php?action=query" +
@@ -80,9 +80,9 @@ class Politician {
     
   }
   
-  private func requestBio(summaryURL: String) {
+  fileprivate func requestBio(_ summaryURL: String) {
     Alamofire
-      .request(.GET, summaryURL)
+      .request(summaryURL)
       .responseJSON { response in
         if response.result.isSuccess {
           self.bioCompletionHandler(response)
@@ -96,18 +96,18 @@ class Politician {
   
   //EFFECTS: sets bio when request is completed
   //MODIFIES: full_bio
-  private func bioCompletionHandler(response: Response<AnyObject, NSError>) {
+  fileprivate func bioCompletionHandler(_ response: DataResponse<Any>) {
     let pages = JSON(response.result.value!)["query"]["pages"]
-    if !pages["-1"].isExists() {
+    if !pages["-1"].exists() {
       let first_page = pages.first!.0
       self.full_bio = pages[first_page]["extract"].stringValue
     }
   }
   
   //EFFECTS: loads politician portrait image
-  private func loadImage() {
+  fileprivate func loadImage() {
     if imageURL != nil {
-      Alamofire.request(.GET, imageURL!)
+      Alamofire.request(imageURL!)
         .responseImage { response in
           if response.result.isSuccess {
             self.imageCompletionHandler(response)
@@ -121,17 +121,17 @@ class Politician {
   
   //EFFECTS: sets image when download is completed
   //MODIFIES: image
-  func imageCompletionHandler(response: Response<UIImage, NSError>) {
+  func imageCompletionHandler(_ response: DataResponse<UIImage>) {
     if let image = response.result.value {
       
-      let cropped_image = squareCrop(image)
+      let cropped_image = squareCrop(image as! UIImage)
       
       self.image = cropped_image
     }
   }
   
-  private func initialsOfFullName() -> String {
-    let separated_names = self.name.componentsSeparatedByString(" ")
+  fileprivate func initialsOfFullName() -> String {
+    let separated_names = self.name.components(separatedBy: " ")
     var lastNameIndex = 0
     
     switch separated_names.count {
@@ -145,21 +145,21 @@ class Politician {
   }
   
   
-  private func saveImage(image: UIImage, filename: String) {
-    let documentsURL = NSFileManager.defaultManager().URLsForDirectory(
-      .DocumentDirectory, inDomains: .UserDomainMask)[0]
+  fileprivate func saveImage(_ image: UIImage, filename: String) {
+    let documentsURL = FileManager.default.urls(
+      for: .documentDirectory, in: .userDomainMask)[0]
     
-    let path = documentsURL.URLByAppendingPathComponent(filename)!.path!
+    let path = documentsURL.appendingPathComponent(filename).path
     
     let pngImageData = UIImagePNGRepresentation(image)
     
-    pngImageData!.writeToFile(path, atomically: true)
+    try? pngImageData!.write(to: URL(fileURLWithPath: path), options: [.atomic])
     
   }
   
-  private func squareCrop(image: UIImage) -> UIImage {
+  fileprivate func squareCrop(_ image: UIImage) -> UIImage {
     
-    let bitmapImage: UIImage = UIImage(CGImage: image.CGImage!)
+    let bitmapImage: UIImage = UIImage(cgImage: image.cgImage!)
     
     var sideLength = image.size.width * 2
     
@@ -167,11 +167,11 @@ class Politician {
       sideLength = image.size.height * 2
     }
     
-    let square = CGRectMake(0, 0, sideLength, sideLength)
+    let square = CGRect(x: 0, y: 0, width: sideLength, height: sideLength)
     
-    let imageRef: CGImage = CGImageCreateWithImageInRect(bitmapImage.CGImage!, square)!
+    let imageRef: CGImage = bitmapImage.cgImage!.cropping(to: square)!
     
-    let croppedImage = UIImage(CGImage: imageRef, scale: image.scale, orientation: image.imageOrientation)
+    let croppedImage = UIImage(cgImage: imageRef, scale: image.scale, orientation: image.imageOrientation)
     
     return croppedImage
   }
@@ -182,8 +182,8 @@ class Politician {
 }
 
 extension String {
-  func replace(string:String, replacement:String) -> String {
-    return self.stringByReplacingOccurrencesOfString(string, withString: replacement, options: NSStringCompareOptions.LiteralSearch, range: nil)
+  func replace(_ string:String, replacement:String) -> String {
+    return self.replacingOccurrences(of: string, with: replacement, options: NSString.CompareOptions.literal, range: nil)
   }
   
   func removeWhitespace() -> String {

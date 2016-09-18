@@ -12,18 +12,18 @@ class SignInController: UIViewController, UITextViewDelegate {
   
   @IBOutlet weak var addressField: UITextField!
   
-  @IBAction func submitButton(sender: UIButton!) {
+  @IBAction func submitButton(_ sender: UIButton!) {
     
-    self.performSegueWithIdentifier("addressSubmitted", sender: self)
+    self.performSegue(withIdentifier: "addressSubmitted", sender: self)
   }
   
-  override func prepareForSegue(segue: UIStoryboardSegue,
-                                sender: AnyObject?) {
+  override func prepare(for segue: UIStoryboardSegue,
+                                sender: Any?) {
     print("sup")
     if segue.identifier == "addressSubmitted" {
       print("seg")
       if let nextVC =
-        segue.destinationViewController as? PoliticianTabController {
+        segue.destination as? PoliticianTabController {
         if let address = addressField.text {
           print("yep")
           nextVC.model.address = address
@@ -40,7 +40,7 @@ class SignInController: UIViewController, UITextViewDelegate {
     
   }
   
-  func textFieldShouldReturn(addressField: UITextField!) -> Bool {
+  func textFieldShouldReturn(_ addressField: UITextField!) -> Bool {
     
     addressField.resignFirstResponder()
     

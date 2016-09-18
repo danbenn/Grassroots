@@ -26,7 +26,7 @@ class PoliticianDataModel {
   
   //REQUIRES: valid US voter address
   //EFFECTS:  gets current officials at local, state and federal level
-  func politiciansAtAddress(completionHandler: (Response<AnyObject, NSError>) -> Void) {
+  func politiciansAtAddress(_ completionHandler: @escaping (DataResponse<Any>) -> Void) {
     
     let parameters: [String: String] = ["address": address]
     
@@ -36,7 +36,7 @@ class PoliticianDataModel {
   
   //REQUIRES: valid US voter address
   //EFFECTS: requests detailed information on contests WITHIN the election
-  func getElections(completionHandler: (Response<AnyObject, NSError>) -> Void) {
+  func getElections(_ completionHandler: @escaping (DataResponse<Any>) -> Void) {
     
     let parameters: [String: String] = [
       "address": address,
@@ -49,23 +49,23 @@ class PoliticianDataModel {
   
   //REQUIRES: valid US voter address
   //EFFECTS: requests election metadata such as date
-  func getPollingLocation(completionHandler: (Response<AnyObject, NSError>) -> Void) {
+  func getPollingLocation(_ completionHandler: @escaping (DataResponse<Any>) -> Void) {
     
     let parameters: [String: String] = ["address": address]
     civicAPI.request("voterinfo", parameters: parameters, handler: completionHandler)
   }
   
   //EFFECTS: sets polling place information
-  func parsePollJSON(result: JSON) {
-    if result["pollingLocations"].isExists() {
+  func parsePollJSON(_ result: JSON) {
+    if result["pollingLocations"].exists() {
       if result["pollingLocations"].count > 0 {
         let location = result["pollingLocations"][0]
-        let name  = location["address"]["locationName"].stringValue.capitalizedString
-        let line1 = location["address"]["line1"].stringValue.capitalizedString
-        let city  = location["address"]["city"].stringValue.capitalizedString
+        let name  = location["address"]["locationName"].stringValue.capitalized
+        let line1 = location["address"]["line1"].stringValue.capitalized
+        let city  = location["address"]["city"].stringValue.capitalized
         let state = location["address"]["state"].stringValue
         let zip   = location["address"]["zip"].stringValue
-        let notes = location["notes"].stringValue.lowercaseString
+        let notes = location["notes"].stringValue.lowercased()
         let hours = location["pollingHours"].stringValue
         
         pollingPlace = PollingPlace(name: name, line1: line1,
@@ -76,7 +76,7 @@ class PoliticianDataModel {
     else {
       civicAPI.status.pollingAddress = false
     }
-    if result["election"].isExists() {
+    if result["election"].exists() {
       let name = result["election"]["name"].stringValue
       electionName = name
       let dateString = result["election"]["electionDay"].stringValue
@@ -85,7 +85,7 @@ class PoliticianDataModel {
   }
   
   //EFFECTS: processes result of detailed election request
-  func parseElectionJSON(result: JSON) {
+  func parseElectionJSON(_ result: JSON) {
     if result.count > 1 {
       let contests = result["contests"]
       for contest in contests.array! {
@@ -104,7 +104,7 @@ class PoliticianDataModel {
   
   //EFFECTS: deals with contests which are referendums
   //MODIFIES: referendums
-  func parseReferendumJSON(referendum: JSON) {
+  func parseReferendumJSON(_ referendum: JSON) {
     let title    = referendum["referendumTitle"].stringValue
     let subtitle = referendum["referendumSubtitle"].stringValue
     let url      = referendum["referendumUrl"].stringValue
@@ -114,7 +114,7 @@ class PoliticianDataModel {
   
   //EFFECTS:  initializes contests, such as "Senator for Congress"
   //MODIFIES: elections
-  func parseContestJSON(contest: JSON) {
+  func parseContestJSON(_ contest: JSON) {
     let type = contest["type"].stringValue
     let office = contest["office"].stringValue
     let district = contest["district"]["name"].stringValue
@@ -124,7 +124,7 @@ class PoliticianDataModel {
     var democrat = Politician(name: "No opponent", party: "Democratic", facebookID: "")
     var independents = [Politician]()
     
-    if contest["candidates"].isExists() {
+    if contest["candidates"].exists() {
       let candidates = contest["candidates"]
       
       for candidate in candidates.array! {
@@ -132,7 +132,7 @@ class PoliticianDataModel {
         let party = candidate["party"].stringValue
         let person: Politician!
         
-        if candidate["photoUrl"].isExists() {
+        if candidate["photoUrl"].exists() {
           let imageURL = candidate["photoUrl"].stringValue
           person = Politician(name: name, party: party, imageURL: imageURL)
         }
@@ -159,12 +159,12 @@ class PoliticianDataModel {
   func openReferendumURL() {
     if referendums.count > 0 {
       let url = referendums[0].url
-      let web_ready_url = url.stringByReplacingOccurrencesOfString("\"",
-                                                                   withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+      let web_ready_url = url.replacingOccurrences(of: "\"",
+                                                                   with: "", options: NSString.CompareOptions.literal, range: nil)
       
-      if (UIApplication.sharedApplication().canOpenURL(
-        NSURL(string: web_ready_url)!)) {
-        UIApplication.sharedApplication().openURL(NSURL(string: web_ready_url)!)
+      if (UIApplication.shared.canOpenURL(
+        URL(string: web_ready_url)!)) {
+        UIApplication.shared.openURL(URL(string: web_ready_url)!)
       }
       
     }
@@ -173,21 +173,21 @@ class PoliticianDataModel {
   //EFFECTS: opens driving directions to polling location on Google maps or Apple maps
   func requestDrivingDirections() {
     if let location = pollingPlace {
-      let web_ready_address = location.line1.stringByReplacingOccurrencesOfString(
-        " ", withString: "+")
+      let web_ready_address = location.line1.replacingOccurrences(
+        of: " ", with: "+")
         + ",+" + location.city + "+" + location.state
       
       var URL = ""
       
-      if (UIApplication.sharedApplication().canOpenURL(
-        NSURL(string: "comgooglemaps:")!)) {
+      if (UIApplication.shared.canOpenURL(
+        Foundation.URL(string: "comgooglemaps:")!)) {
         URL = "http://maps.google.com/?daddr=\(web_ready_address)"
       }
       else {
         URL = "http://maps.apple.com/?daddr=\(web_ready_address)"
       }
       
-      UIApplication.sharedApplication().openURL(NSURL(string: URL)!)
+      UIApplication.shared.openURL(Foundation.URL(string: URL)!)
       
     }
   }
@@ -195,12 +195,12 @@ class PoliticianDataModel {
   
   //EFFECTS: Finds the Facebook ID of a candidate, e.g. BobForPresident
   //MODIFIES: facebookID
-  func facebookID(candidate: JSON) -> String {
-    if candidate["channels"].isExists() {
+  func facebookID(_ candidate: JSON) -> String {
+    if candidate["channels"].exists() {
       
       let facebookURL = candidate["channels"][0]["id"].stringValue
       
-      let components = facebookURL.componentsSeparatedByString(".com/")
+      let components = facebookURL.components(separatedBy: ".com/")
       
       let facebookID = components.last!
       
@@ -217,12 +217,12 @@ class PoliticianDataModel {
   
   //EFFECTS: processes politician JSON
   //MODIFIES: city
-  func parsePoliticianJSON(result: JSON) {
+  func parsePoliticianJSON(_ result: JSON) {
     if result.count > 0 {
       let officials = result["officials"]
       let offices = result["offices"]
       let divisions = result["divisions"]
-      let city = result["normalizedInput"]["city"].stringValue.capitalizedString
+      let city = result["normalizedInput"]["city"].stringValue.capitalized
       
       userDistrict = District(divisions: divisions, city: city)
       
@@ -237,13 +237,13 @@ class PoliticianDataModel {
   
   //EFFECTS: creates polticians
   //MODIFIES: politicians
-  func initializePoliticians(officials: JSON) {
+  func initializePoliticians(_ officials: JSON) {
     if officials.count > 0 {
       for person in officials.array! {
         let party = person["party"].stringValue
         let name = person["name"].stringValue
         
-        if (person["photoUrl"].isExists()) {
+        if (person["photoUrl"].exists()) {
           let imageURL = person["photoUrl"].stringValue
           politicians.append(Politician(name: name, party: party, imageURL: imageURL))
         }
@@ -258,7 +258,7 @@ class PoliticianDataModel {
   
   //EFFECTS: matches job description with politician
   //MODIFIES: polticians
-  private func matchOfficesWithPoliticians(offices: JSON) {
+  fileprivate func matchOfficesWithPoliticians(_ offices: JSON) {
     if offices.count > 0 {
       for office in offices.array! {
         for person_index in office["officialIndices"].array! {

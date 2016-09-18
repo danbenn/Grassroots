@@ -15,7 +15,7 @@ class APIStatus {
   var pollingAddress: Bool?
   var politicians: Bool?
   
-  func markAsUnavailable(type: String, parameters: [String:String]) {
+  func markAsUnavailable(_ type: String, parameters: [String:String]) {
     print("error: unable to process \(type) API request")
     switch(type) {
     case "voterinfo":

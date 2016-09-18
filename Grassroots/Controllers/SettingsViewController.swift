@@ -10,13 +10,13 @@ import UIKit
 
 class SettingsViewController: UIViewController {
   
-  @IBAction func attributionButton(sender: AnyObject) {
+  @IBAction func attributionButton(_ sender: AnyObject) {
     
     let URL = "http://www.icons8.com"
     
-    if (UIApplication.sharedApplication().canOpenURL(
-      NSURL(string: URL)!)) {
-      UIApplication.sharedApplication().openURL(NSURL(string: URL)!)
+    if (UIApplication.shared.canOpenURL(
+      Foundation.URL(string: URL)!)) {
+      UIApplication.shared.openURL(Foundation.URL(string: URL)!)
     }
   }
   

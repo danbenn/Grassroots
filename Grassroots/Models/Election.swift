@@ -18,7 +18,7 @@ class Election {
   let democraticCandidate: Politician
   let independentCandidates: [Politician]
   
-  private var notification_pushed: Bool = false
+  fileprivate var notification_pushed: Bool = false
   
   required init(type: String, office: String, district: String,
                 ballotIndex: Int, democraticCandidate: Politician,

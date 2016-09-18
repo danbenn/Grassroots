@@ -14,22 +14,22 @@ class CivicAPI {
   
   var status = APIStatus()
   
-  private let civicApiBaseURL = "https://www.googleapis.com/civicinfo/v2/"
-  private let apiKey = "?key=AIzaSyDnMrVJjPptjGc9KSDGkn_qZJ98wj_aZiQ"
+  fileprivate let civicApiBaseURL = "https://www.googleapis.com/civicinfo/v2/"
+  fileprivate let apiKey = "?key=AIzaSyDnMrVJjPptjGc9KSDGkn_qZJ98wj_aZiQ"
   
-  func request(type: String, parameters: [String:String],
-               handler: (Response<AnyObject, NSError>) -> Void) {
+  func request(_ type: String, parameters: [String:String],
+               handler: @escaping (DataResponse<Any>) -> Void) {
     
     let URL = civicApiBaseURL + type + apiKey
     
     Alamofire
-      .request(.GET, URL, parameters: parameters)
+      .request(URL, parameters: parameters)
       .responseJSON { response in
         if response.result.isSuccess {
           
           let result = JSON(response.result.value!)
           
-          if result["error"].isExists() {
+          if result["error"].exists() {
             
             //TO BE IMPLEMENTED: detection of invalid addresses
             //                        let message = result["error"][
@@ -41,7 +41,10 @@ class CivicAPI {
             
             self.status.markAsUnavailable(type, parameters: parameters)
           }
-          handler(response)
+          else {
+            handler(response)
+          }
+          
         }
         else {
           self.status.markAsUnavailable(type, parameters: parameters)

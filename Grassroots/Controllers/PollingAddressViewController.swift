@@ -18,7 +18,7 @@ class PollingAddressViewController: UIViewController {
   @IBOutlet weak var address: UILabel!
   
   @IBOutlet weak var directionsOutlet: UIButton!
-  @IBAction func directions(sender: AnyObject) {
+  @IBAction func directions(_ sender: AnyObject) {
     model.requestDrivingDirections()
   }
   
@@ -44,7 +44,7 @@ class PollingAddressViewController: UIViewController {
     }
     else {
       address?.text = "unavailable"
-      directionsOutlet.hidden = true
+      directionsOutlet.isHidden = true
     }
     
     
@@ -56,7 +56,7 @@ class PollingAddressViewController: UIViewController {
     
   }
   
-  func addPinAtAddress(address: String) {
+  func addPinAtAddress(_ address: String) {
     let geocoder = CLGeocoder()
     geocoder.geocodeAddressString(address, completionHandler:
       {(placemarks, error) -> Void in
@@ -74,7 +74,7 @@ class PollingAddressViewController: UIViewController {
   
   
   let regionRadius: CLLocationDistance = 500
-  func centerMapOnLocation(location: CLLocation) {
+  func centerMapOnLocation(_ location: CLLocation) {
     let coordinateRegion = MKCoordinateRegionMakeWithDistance(
       location.coordinate, regionRadius * 2.0, regionRadius * 2.0)
     PollMap.setRegion(coordinateRegion, animated: true)

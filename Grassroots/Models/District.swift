@@ -25,17 +25,17 @@ class District {
       
       var districts = Array(divisions.dictionary!.keys)
       
-      for (index, district) in districts.enumerate() {
-        if district.containsString("county:") {
+      for (index, district) in districts.enumerated() {
+        if district.contains("county:") {
           county = divisions[district]["name"].stringValue
         }
-        else if district.containsString("cd:") {
+        else if district.contains("cd:") {
           congressional_district = divisions[district]["name"].stringValue
         }
-        else if district.containsString("sldu:") {
+        else if district.contains("sldu:") {
           state_senate_district = divisions[district]["name"].stringValue
         }
-        else if district.containsString("sldl:") {
+        else if district.contains("sldl:") {
           state_house_district = divisions[district]["name"].stringValue
         }
         districts[index] = "" //remove from search

@@ -18,7 +18,7 @@ class Date {
   let day:   String //e.g. 08
   
   init(dateString: String) {
-    let components = dateString.componentsSeparatedByString("-")
+    let components = dateString.components(separatedBy: "-")
     if components.count == 3 {
       self.year  = components[0]
       self.month = components[1]
@@ -54,7 +54,7 @@ class Date {
     }()
   
   
-  private func monthName(month: Int) -> String {
+  fileprivate func monthName(_ month: Int) -> String {
     switch month {
     case 1:  return "JAN"
     case 2:  return "FEB"

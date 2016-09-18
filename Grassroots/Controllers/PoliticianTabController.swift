@@ -14,27 +14,27 @@ class PoliticianTabController: UITabBarController {
   
   var address = ""
   
-  override func viewDidAppear(animated: Bool) {
+  override func viewDidAppear(_ animated: Bool) {
     print("A")
     if !appHasLaunchedBefore() {
       print("B")
-      self.performSegueWithIdentifier("loginView", sender: self)
+      self.performSegue(withIdentifier: "loginView", sender: self)
     }
   }
   
   
   //EFFECTS: determines if app has launched before
   //MODIFIES: NSUserDefaults
-  private func appHasLaunchedBefore() -> Bool {
+  fileprivate func appHasLaunchedBefore() -> Bool {
     print("C")
     let launchedBefore =
-      NSUserDefaults.standardUserDefaults().boolForKey("launched")
+      UserDefaults.standard.bool(forKey: "launched")
     print("launched before: \(launchedBefore)")
     if launchedBefore {
       return true
     }
     else {
-      NSUserDefaults.standardUserDefaults().setBool(true, forKey: "launched")
+      UserDefaults.standard.set(true, forKey: "launched")
       return false
     }
   }
