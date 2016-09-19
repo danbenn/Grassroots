@@ -22,12 +22,22 @@ class PoliticianDataModel {
   
   let civicAPI = CivicAPI()
   
-  var address = "233 Blackrock Rd"
+  var address = ""
+  
+  fileprivate func loadAddress() -> String {
+    
+    if let address:String = UserDefaults.standard.string(forKey: "address") {
+      return address
+    }
+    else {
+      return ""
+    }
+  }
   
   //REQUIRES: valid US voter address
   //EFFECTS:  gets current officials at local, state and federal level
   func politiciansAtAddress(_ completionHandler: @escaping (DataResponse<Any>) -> Void) {
-    
+    address = loadAddress()
     let parameters: [String: String] = ["address": address]
     
     civicAPI.request("representatives", parameters: parameters, handler: completionHandler)
@@ -37,7 +47,7 @@ class PoliticianDataModel {
   //REQUIRES: valid US voter address
   //EFFECTS: requests detailed information on contests WITHIN the election
   func getElections(_ completionHandler: @escaping (DataResponse<Any>) -> Void) {
-    
+    address = loadAddress()
     let parameters: [String: String] = [
       "address": address,
       "electionId": "2000"
@@ -50,7 +60,7 @@ class PoliticianDataModel {
   //REQUIRES: valid US voter address
   //EFFECTS: requests election metadata such as date
   func getPollingLocation(_ completionHandler: @escaping (DataResponse<Any>) -> Void) {
-    
+    address = loadAddress()
     let parameters: [String: String] = ["address": address]
     civicAPI.request("voterinfo", parameters: parameters, handler: completionHandler)
   }

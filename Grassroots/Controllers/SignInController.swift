@@ -19,14 +19,13 @@ class SignInController: UIViewController, UITextViewDelegate {
   
   override func prepare(for segue: UIStoryboardSegue,
                                 sender: Any?) {
-    print("sup")
     if segue.identifier == "addressSubmitted" {
-      print("seg")
       if let nextVC =
         segue.destination as? PoliticianTabController {
         if let address = addressField.text {
-          print("yep")
-          nextVC.model.address = address
+          
+          UserDefaults.standard.set(address, forKey: "address")
+          
         }
         else {
           print("unable to fetch text from text field")
@@ -34,7 +33,6 @@ class SignInController: UIViewController, UITextViewDelegate {
         
       }
       else {
-        print("nerg")
       }
     }
     

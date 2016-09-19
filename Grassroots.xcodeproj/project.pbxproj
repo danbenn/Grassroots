@@ -198,13 +198,13 @@
 		FFF85DEA1D627FDC00DCC0B3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FF6CB7701D8F206900416D03 /* HomeViewController.swift */,
+				FF6CB76F1D8F206900416D03 /* ElectionsViewController.swift */,
+				FF6CB7711D8F206900416D03 /* PollingAddressViewController.swift */,
+				FF6CB76E1D8F206900416D03 /* DistrictViewController.swift */,
 				FF6CB76B1D8F206900416D03 /* SettingsViewController.swift */,
 				FF6CB76C1D8F206900416D03 /* SignInController.swift */,
 				FF6CB76D1D8F206900416D03 /* PoliticianTabController.swift */,
-				FF6CB76E1D8F206900416D03 /* DistrictViewController.swift */,
-				FF6CB76F1D8F206900416D03 /* ElectionsViewController.swift */,
-				FF6CB7701D8F206900416D03 /* HomeViewController.swift */,
-				FF6CB7711D8F206900416D03 /* PollingAddressViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -326,8 +326,9 @@
 				TargetAttributes = {
 					FFF85DA81D627F4B00DCC0B3 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = BGS2DQVW2M;
+						DevelopmentTeam = 9CZ4UVFHRQ;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -615,9 +616,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 9CZ4UVFHRQ;
 				INFOPLIST_FILE = Grassroots/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = teamfred.Grassroots.app;
+				PRODUCT_BUNDLE_IDENTIFIER = helloteamfred.Grassroots;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 3.0;
@@ -631,9 +633,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 9CZ4UVFHRQ;
 				INFOPLIST_FILE = Grassroots/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = teamfred.Grassroots.app;
+				PRODUCT_BUNDLE_IDENTIFIER = helloteamfred.Grassroots;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 3.0;

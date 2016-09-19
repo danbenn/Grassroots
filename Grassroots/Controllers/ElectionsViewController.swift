@@ -152,30 +152,6 @@ extension String {
     return String(self[i] as Character)
   }
   
-  /*
-  subscript (r: Range<Int>) -> String {
-    let start = characters.index(startIndex, offsetBy: r.lowerBound)
-    let end = start.index(start, offsetBy: r.upperBound - r.lowerBound)
-    return self[Range(start ..< end)]
-  }
-  */
-  var html2AttributedString: NSAttributedString? {
-    guard
-      let data = data(using: String.Encoding.utf8)
-      else { return nil }
-    do {
-      return try NSAttributedString(data: data, options:
-        [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType,
-          NSCharacterEncodingDocumentAttribute:String.Encoding.utf8],
-                                    documentAttributes: nil)
-    } catch let error as NSError {
-      print(error.localizedDescription)
-      return  nil
-    }
-  }
-  var html2String: String {
-    return html2AttributedString?.string ?? ""
-  }
 }
 
 

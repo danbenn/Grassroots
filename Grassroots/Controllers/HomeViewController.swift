@@ -94,6 +94,7 @@ UITableViewDataSource {
         "There are \(tbc.model.elections.count) upcoming contests"
       //cell.lowerSubHeader!.text = "Notifications are: on"
     }
+    
     return cell!
     
   }
