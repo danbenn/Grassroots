@@ -14,9 +14,8 @@ class Election {
   let office: String
   let district: String
   let ballotIndex: Int
-  let republicanCandidate: Politician
-  let democraticCandidate: Politician
-  let independentCandidates: [Politician]
+  
+  var candidates = [Politician]()
   
   fileprivate var notification_pushed: Bool = false
   
@@ -29,9 +28,18 @@ class Election {
     self.office = office
     self.district = district
     self.ballotIndex = ballotIndex
-    self.democraticCandidate = democraticCandidate
-    self.republicanCandidate = republicanCandidate
-    self.independentCandidates = independentCandidates
+    
+    //Builds candidates array with major party candidates at the beginning
+    if democraticCandidate.name != "No opponent" {
+      candidates.append(democraticCandidate)
+    }
+    if republicanCandidate.name != "No opponent" {
+      candidates.append(republicanCandidate)
+    }
+    for person in independentCandidates {
+      candidates.append(person)
+    }
+    
   }
   
   

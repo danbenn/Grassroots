@@ -13,6 +13,7 @@ import AlamofireImage
 
 class Politician {
   let name: String
+  let runningMate: String
   let party: String
   var office: String!
   var full_bio: String!
@@ -26,13 +27,44 @@ class Politician {
     [unowned self] in
     return self.initialsOfFullName()
     }()
-  
+
   
   //EFFECTS: initializes politician without an image
   //MODIFIES: name, party
   init(name: String, party: String, facebookID: String) {
-    self.name = name
-    self.party = party
+    
+    var revised_name = name
+    
+    //REMOVE RUNNING MATE'S NAME
+    if name.contains("/") {
+      let names = name.components(separatedBy: "/")
+      revised_name = names[0]
+      self.runningMate = names[1]
+    }
+    else {
+      self.runningMate = ""
+    }
+  
+    //REMOVE MIDDLE NAME e.g., Lawrence R. Stelma
+    let components = revised_name.components(separatedBy: " ")
+    if components.count == 3 {
+      revised_name = components[0] + " " + components[2]
+    }
+    
+    self.name = revised_name
+    
+    if party.contains("Republican") {
+      self.party = "Republican"
+    }
+    else if party.contains("Democrat") {
+      self.party = "Democrat"
+    }
+    else if party.contains("Libertarian") {
+      self.party = "Libertarian"
+    }
+    else {
+      self.party = party
+    }
     
     if facebookID != "" {
       imageURL =
@@ -47,6 +79,7 @@ class Politician {
   //MODIFIES: name, party, imageURL
   init(name: String, party: String, imageURL: String) {
     self.name = name
+    self.runningMate = ""
     self.party = party
     self.imageURL = imageURL
     loadImage()
@@ -54,9 +87,24 @@ class Politician {
   
   init() {
     self.name = ""
+    self.runningMate = ""
     self.party = ""
   }
   
+  //EFFECTS: loads politician portrait image
+  fileprivate func loadImage() {
+    if imageURL != nil {
+      Alamofire.request(imageURL!)
+        .responseImage { response in
+          if response.result.isSuccess {
+            self.imageCompletionHandler(response)
+          }
+          else {
+            print("error: unable to fetch image for \(self.name)")
+          }
+      }
+    }
+  }
   
   
   
@@ -104,20 +152,7 @@ class Politician {
     }
   }
   
-  //EFFECTS: loads politician portrait image
-  fileprivate func loadImage() {
-    if imageURL != nil {
-      Alamofire.request(imageURL!)
-        .responseImage { response in
-          if response.result.isSuccess {
-            self.imageCompletionHandler(response)
-          }
-          else {
-            print("error: unable to fetch image for \(self.name)")
-          }
-      }
-    }
-  }
+  
   
   //EFFECTS: sets image when download is completed
   //MODIFIES: image
@@ -182,6 +217,10 @@ class Politician {
 }
 
 extension String {
+  
+  func contains(find: String) -> Bool {
+    return self.range(of: find, options: .caseInsensitive) != nil
+  }
   func replace(_ string:String, replacement:String) -> String {
     return self.replacingOccurrences(of: string, with: replacement, options: NSString.CompareOptions.literal, range: nil)
   }

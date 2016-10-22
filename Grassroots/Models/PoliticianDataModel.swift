@@ -49,13 +49,11 @@ class PoliticianDataModel {
   func getElections(_ completionHandler: @escaping (DataResponse<Any>) -> Void) {
     address = loadAddress()
     let parameters: [String: String] = [
-      "address": address,
-      "electionId": "2000"
+      "address": address//,
+      //"electionId": "2000"
     ]
     civicAPI.request("voterinfo", parameters: parameters, handler: completionHandler)
   }
-  
-  
   
   //REQUIRES: valid US voter address
   //EFFECTS: requests election metadata such as date
@@ -98,6 +96,7 @@ class PoliticianDataModel {
   func parseElectionJSON(_ result: JSON) {
     if result.count > 1 {
       let contests = result["contests"]
+      print(contests)
       for contest in contests.array! {
         
         let type = contest["type"].stringValue
@@ -122,6 +121,7 @@ class PoliticianDataModel {
     referendums.append(ref)
   }
   
+  
   //EFFECTS:  initializes contests, such as "Senator for Congress"
   //MODIFIES: elections
   func parseContestJSON(_ contest: JSON) {
@@ -134,9 +134,10 @@ class PoliticianDataModel {
     var democrat = Politician(name: "No opponent", party: "Democratic", facebookID: "")
     var independents = [Politician]()
     
+    //Initialize candidates
     if contest["candidates"].exists() {
       let candidates = contest["candidates"]
-      
+    
       for candidate in candidates.array! {
         let name = candidate["name"].stringValue
         let party = candidate["party"].stringValue
@@ -150,16 +151,20 @@ class PoliticianDataModel {
           let id = facebookID(candidate)
           person = Politician(name: name, party: party, facebookID: id)
         }
-        switch party {
-        case "Democratic": democrat = person
-        case "Republican": republican = person
-        default: independents.append(person)
+        if party.range(of: "Democrat") != nil {
+          democrat = person
+        }
+        else if party.range(of: "Republican") != nil {
+          republican = person
+        }
+        else {
+          independents.append(person)
         }
       }
       
       let election = Election(type: type, office: office,
-                              district: district, ballotIndex: index, democraticCandidate: democrat,
-                              republicanCandidate: republican, independentCandidates: independents)
+        district: district, ballotIndex: index, democraticCandidate: democrat,
+        republicanCandidate: republican, independentCandidates: independents)
       
       elections.append(election)
     }
@@ -170,7 +175,7 @@ class PoliticianDataModel {
     if referendums.count > 0 {
       let url = referendums[0].url
       let web_ready_url = url.replacingOccurrences(of: "\"",
-                                                                   with: "", options: NSString.CompareOptions.literal, range: nil)
+        with: "", options: NSString.CompareOptions.literal, range: nil)
       
       if (UIApplication.shared.canOpenURL(
         URL(string: web_ready_url)!)) {
@@ -278,11 +283,6 @@ class PoliticianDataModel {
       }
     }
   }
-  
-  
-  
-  
-  
   
   
   func notificationText() {

@@ -46,27 +46,50 @@ UITableViewDelegate, UITableViewDataSource {
   func initializeContestCell(_ cell: inout ContestCell, indexPath: IndexPath) {
     cell.office?.text = model.elections[(indexPath as NSIndexPath).row].office
     
-    let democrat   = model.elections[(indexPath as NSIndexPath).row].democraticCandidate
-    let republican = model.elections[(indexPath as NSIndexPath).row].republicanCandidate
+    let candidates = model.elections[(indexPath as NSIndexPath).row].candidates
+    let candidate1: Politician
+    let candidate2: Politician
     
-    cell.democrat_name?.text = democrat.name
-    cell.democrat_initials?.text = democrat.initials
+    if candidates.count >= 1 {
+      candidate1 = candidates[0]
+    }
+    else {
+      candidate1 = Politician(name: "", party: "", facebookID: "")
+    }
+  
+    if candidates.count >= 2 {
+      candidate2 = candidates[1]
+    }
+    else {
+      candidate2 = Politician(name: "No opponent", party: "", facebookID: "")
+    }
+
     
-    if let image = democrat.image {
-      cell.democrat_image?.image = image
-      createRoundImageView(cell.democrat_image)
+    cell.candidate1Name?.text = candidate1.name
+    cell.candidate1Initials?.text = candidate1.initials
+    cell.candidate1Party?.text = candidate1.party
+    
+    if let image = candidate1.image {
+      cell.candidate1Image?.image = image
+      createRoundImageView(cell.candidate1Image)
     }
     
-    cell.republican_name?.text = republican.name
-    cell.republican_initials?.text = republican.initials
+    cell.candidate2Name?.text = candidate2.name
+    cell.candidate2Initials?.text = candidate2.initials
+    cell.candidate2Party?.text = candidate2.party
     
-    if let image = republican.image {
-      cell.republican_image?.image = image
-      createRoundImageView(cell.republican_image)
+    if let image = candidate2.image {
+      cell.candidate2Image?.image = image
+      createRoundImageView(cell.candidate2Image)
     }
+    else {
+      
+    }
+  
+    createRoundLabel(cell.candidate1Initials)
+    createRoundLabel(cell.candidate2Initials)
     
-    createRoundLabel(cell.democrat_initials)
-    createRoundLabel(cell.republican_initials)
+    
     
   }
   
@@ -120,6 +143,7 @@ UITableViewDelegate, UITableViewDataSource {
     imageView.layer.cornerRadius = imageView.frame.size.width / 2;
     imageView.clipsToBounds = true
     imageView.layer.borderWidth = 1
+    imageView.layer.zPosition = 1
     imageView.layer.borderColor = UIColor.green.cgColor
   }
   
@@ -130,6 +154,8 @@ UITableViewDelegate, UITableViewDataSource {
     label.layer.borderWidth = 1
     label.layer.borderColor = UIColor.green.cgColor
   }
+  
+  
   
   func refreshUI() {
     DispatchQueue.main.async(execute: {

@@ -12,16 +12,20 @@ class ContestCell : UITableViewCell {
   
   @IBOutlet weak var office: UILabel!
   
-  @IBOutlet weak var democrat_initials: UILabel!
+  @IBOutlet weak var candidate1Name: UILabel!
   
-  @IBOutlet weak var democrat_name: UILabel!
+  @IBOutlet weak var candidate2Name: UILabel!
   
-  @IBOutlet weak var republican_initials: UILabel!
+  @IBOutlet weak var candidate1Party: UILabel!
   
-  @IBOutlet weak var republican_name: UILabel!
+  @IBOutlet weak var candidate2Party: UILabel!
   
-  @IBOutlet weak var democrat_image: UIImageView!
+  @IBOutlet weak var candidate1Initials: UILabel!
   
-  @IBOutlet weak var republican_image: UIImageView!
+  @IBOutlet weak var candidate2Initials: UILabel!
+  
+  @IBOutlet weak var candidate1Image: UIImageView!
+  
+  @IBOutlet weak var candidate2Image: UIImageView!
   
 }
