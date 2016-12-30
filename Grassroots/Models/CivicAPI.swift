@@ -31,14 +31,6 @@ class CivicAPI {
           
           if result["error"].exists() {
             
-            //TO BE IMPLEMENTED: detection of invalid addresses
-            //                        let message = result["error"][
-            //                            "errors"].array!.first!["message"].stringValue
-            //
-            //                        if message == "Failed to parse address" {
-            //
-            //                        }
-            
             self.status.markAsUnavailable(type, parameters: parameters)
           }
           else {

@@ -18,12 +18,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       
         let material_green = UIColor(red: 76.0/255.0, green: 175.0/255.0, blue: 80.0/255.0, alpha: 1.0)
       
+      
+      
+      if UserDefaults.standard.bool(forKey: "launched") == false {
+        //self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let initialViewController = storyboard.instantiateViewController(withIdentifier: "SignInController")
+        self.window?.rootViewController = initialViewController
+        self.window?.makeKeyAndVisible()
+      }
+      
         UINavigationBar.appearance().barTintColor = material_green
-      
-      
-          
-        UINavigationBar.appearance().tintColor =
-          material_green
       
       UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white, NSFontAttributeName: UIFont(name: "AvenirNext-DemiBold", size: 24)!]
       
@@ -33,7 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
-    
+  
+  
     //EFFECTS: updates election data and notifies user of new elections
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
        

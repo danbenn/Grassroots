@@ -19,19 +19,32 @@ UITableViewDataSource {
   
   let cellReuseIdentifier = "politicianCell"
   
-  var model: PoliticianDataModel!
-  
+  let material_green =
+    UIColor(red: 76.0/255.0, green: 175.0/255.0, blue: 80.0/255.0, alpha: 1.0)
+
   //EFFECTS: initializes view controller
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
-    
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    let tbc = self.tabBarController as! PoliticianTabController
-    model = tbc.model
     
+  }
+  
+  func tableView(tableView: UITableView!, didSelectRowAtIndexPath
+      indexPath: NSIndexPath!) {
+    print("You selected cell #\(indexPath.row)!")
+    let indexPath = tableView.indexPathForSelectedRow;
+    let currentCell = tableView.cellForRow(at:indexPath!) as! PoliticianCell
+    if let vc = self.storyboard!.instantiateViewController(withIdentifier:
+      "ProfileViewController") as? ProfileViewController {
+      vc.name = currentCell.politicianName.text!
+      performSegue(withIdentifier: "viewProfile", sender: self)
+    }
+    else {
+      print("error: view controller cast was unsuccessful")
+    }
   }
   
   func tableView(_ tableView: UITableView,
@@ -48,23 +61,34 @@ UITableViewDataSource {
     
     cell.politicianName?.text = person.name
     
+    var office = person.office!
+    
+    if person.party.contains("epublic") {
+      office = office + " (R)"
+    }
+    else if person.party.contains("emocrat") {
+      office = office + " (D)"
+    }
+    
     let myAttributedString = NSMutableAttributedString(
-      string: person.office!,
+      string: office,
       attributes: [NSFontAttributeName:UIFont(
         name: "Avenir",
         size: 16.0)!])
     
     cell.politicianTitle?.attributedText = myAttributedString
     
-    if let image = model.politicians[(indexPath as NSIndexPath).row].image {
+    if let image = person.image {
       cell.politicianImage.image = image
       createRoundImageView(cell)
+      refreshUI()
     }
     else {
-      cell.initials?.text = model.politicians[(indexPath as NSIndexPath).row].initials
+      cell.initials?.text = person.initials
       cell.politicianImage.image = nil
     }
-    
+    cell.selectionStyle = .blue
+    cell.isUserInteractionEnabled = true
     createRoundLabel(cell.initials)
     
     //check that the required image is loaded
@@ -78,7 +102,8 @@ UITableViewDataSource {
       cell.politicianImage.frame.size.width / 2;
     cell.politicianImage.clipsToBounds = true
     cell.politicianImage.layer.borderWidth = 2
-    cell.politicianImage.layer.borderColor = UIColor.green.cgColor
+    
+    cell.politicianImage.layer.borderColor = material_green.cgColor
   }
   
   //EFFECTS: rounds label, adds bright green border
@@ -86,7 +111,8 @@ UITableViewDataSource {
     label.layer.cornerRadius = label.frame.size.width / 2;
     label.clipsToBounds = true
     label.layer.borderWidth = 1
-    label.layer.borderColor = UIColor.green.cgColor
+    label.layer.borderColor = material_green.cgColor
+    label.textColor = material_green
   }
   
   func refreshUI() {

@@ -19,21 +19,17 @@ UITableViewDelegate, UITableViewDataSource {
     model.openReferendumURL()
   }
   
-  var model: PoliticianDataModel
+  let material_green =
+    UIColor(red: 76.0/255.0, green: 175.0/255.0, blue: 80.0/255.0, alpha: 1.0)
   
   //EFFECTS: initializes view controller
   required init?(coder aDecoder: NSCoder) {
-    self.model = PoliticianDataModel()
     super.init(coder: aDecoder)
   }
   
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    let tbc = self.tabBarController as! PoliticianTabController
-    
-    model = tbc.model
     
     
   }
@@ -66,32 +62,39 @@ UITableViewDelegate, UITableViewDataSource {
 
     
     cell.candidate1Name?.text = candidate1.name
-    cell.candidate1Initials?.text = candidate1.initials
     cell.candidate1Party?.text = candidate1.party
     
     if let image = candidate1.image {
       cell.candidate1Image?.image = image
-      createRoundImageView(cell.candidate1Image)
+      createRoundImageView(cell.candidate1Image, party: candidate1.party)
+      
+    }
+    else {
+      cell.candidate1Initials?.text = candidate1.initials
+      createRoundLabel(cell.candidate1Initials, party: candidate1.party)
+      cell.candidate1Image.image = nil
     }
     
     cell.candidate2Name?.text = candidate2.name
-    cell.candidate2Initials?.text = candidate2.initials
     cell.candidate2Party?.text = candidate2.party
     
     if let image = candidate2.image {
       cell.candidate2Image?.image = image
-      createRoundImageView(cell.candidate2Image)
+      createRoundImageView(cell.candidate2Image, party: candidate2.party)
     }
     else {
-      
+      cell.candidate2Initials?.text = candidate2.initials
+      createRoundLabel(cell.candidate2Initials, party: candidate2.party)
+      cell.candidate2Image.image = nil
     }
+    
+    
   
-    createRoundLabel(cell.candidate1Initials)
-    createRoundLabel(cell.candidate2Initials)
     
     
     
   }
+  
   
   func tableView(_ tableView: UITableView, cellForRowAt
     indexPath: IndexPath) -> UITableViewCell {
@@ -139,20 +142,39 @@ UITableViewDelegate, UITableViewDataSource {
     }
   }
   
-  func createRoundImageView(_ imageView: UIImageView) {
+  func createRoundImageView(_ imageView: UIImageView, party: String) {
     imageView.layer.cornerRadius = imageView.frame.size.width / 2;
     imageView.clipsToBounds = true
-    imageView.layer.borderWidth = 1
+    imageView.layer.borderWidth = 2
+    imageView.layer.borderColor = material_green.cgColor
+    self.view.bringSubview(toFront: imageView);
     imageView.layer.zPosition = 1
-    imageView.layer.borderColor = UIColor.green.cgColor
+    
+    if party.contains("epublic") {
+      imageView.layer.borderColor = UIColor.red.cgColor
+    }
+    if party.contains("emocrat") {
+      imageView.layer.borderColor = UIColor.blue.cgColor
+    }
+
   }
   
   
-  fileprivate func createRoundLabel(_ label: UILabel) {
+  fileprivate func createRoundLabel(_ label: UILabel, party: String) {
     label.layer.cornerRadius = label.frame.size.width / 2;
     label.clipsToBounds = true
     label.layer.borderWidth = 1
-    label.layer.borderColor = UIColor.green.cgColor
+    label.textColor = material_green
+    label.layer.borderColor = material_green.cgColor
+    
+    if party.contains("epublic") {
+      label.layer.borderColor = UIColor.red.cgColor
+      label.textColor = UIColor.red
+    }
+    if party.contains("emocrat") {
+      label.layer.borderColor = UIColor.blue.cgColor
+      label.textColor = UIColor.blue
+    }
   }
   
   

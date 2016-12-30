@@ -96,7 +96,7 @@ class PoliticianDataModel {
   func parseElectionJSON(_ result: JSON) {
     if result.count > 1 {
       let contests = result["contests"]
-      print(contests)
+      //print(contests)
       for contest in contests.array! {
         
         let type = contest["type"].stringValue
@@ -212,21 +212,22 @@ class PoliticianDataModel {
   //MODIFIES: facebookID
   func facebookID(_ candidate: JSON) -> String {
     if candidate["channels"].exists() {
-      
-      let facebookURL = candidate["channels"][0]["id"].stringValue
-      
-      let components = facebookURL.components(separatedBy: ".com/")
-      
-      let facebookID = components.last!
-      
-      //print("\(candidate["name"]) -> \(facebookID)")
-      
-      return facebookID
+      for channel in candidate["channels"].array! {
+    
+        if channel["type"].stringValue == "Facebook" {
+          let facebookURL = channel["id"].stringValue
+          
+          let components = facebookURL.components(separatedBy: ".com/")
+          
+          let facebookID = components.last!
+          
+          print("\(candidate["name"]) -> \(facebookID)")
+          
+          return facebookID
+        }
+      }
     }
-    else {
-      //print(candidate["name"])
-      return ""
-    }
+    return ""
   }
   
   

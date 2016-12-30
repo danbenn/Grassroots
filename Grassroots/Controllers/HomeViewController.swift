@@ -10,186 +10,233 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class HomeViewController: UIViewController, UITableViewDelegate,
-UITableViewDataSource {
+var model = PoliticianDataModel()
+
+class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
   
-  @IBOutlet weak var newsFeedTable: UITableView!
+  var refreshTimer = Timer()
   
-  var tbc = PoliticianTabController()
+  let material_green =
+    UIColor(red: 76.0/255.0, green: 175.0/255.0, blue: 80.0/255.0, alpha: 1.0)
+  
+  let cellId = "politicianHead"
+  
+  let REFRESH_FREQUENCY: Double = 0.4
+  
+  @IBOutlet weak var politicianHeads: UICollectionView!
+  
+  //Election Cell Labels
+  @IBOutlet weak var electionName: UILabel!
+  @IBOutlet weak var electionSubHeader: UILabel!
+  @IBOutlet weak var electionLowerSubHeader: UILabel!
+  @IBOutlet weak var calendarMonth: UILabel!
+  @IBOutlet weak var calendarDay: UILabel!
+  
+  //Location Cell Labels
+  @IBOutlet weak var pollingAddress: UILabel!
+  @IBOutlet weak var locationName: UILabel!
+
+  @IBOutlet weak var electionCell: ElectionCell!
+  @IBOutlet weak var locationCell: LocationCell!
+  
+  //Button overlay so when electionCell is tapped, goes to sample ballot
+  @IBOutlet weak var sampleBallotLink: UIButton!
+  //Button overlay shows polling information when tapped
+  @IBOutlet weak var pollingDetailLink: UIButton!
+  
   
   //EFFECTS: initializes view controller
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
-
   }
   
+  func setupPoliticianHeads() {
+    if let layout = politicianHeads.collectionViewLayout as? UICollectionViewFlowLayout {
+      layout.scrollDirection = .horizontal
+    }
+  }
+  
+  func refreshViews() {
+    setupElectionCell()
+    setupLocationCell()
+    setupPoliticianHeads()
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    tbc = tabBarController as! PoliticianTabController
-    tbc.model.politiciansAtAddress(politicianCompletionHandler)
-    tbc.model.getElections(electionCompletionHandler)
-    tbc.model.getPollingLocation(pollCompletionHandler)
+    model.address = UserDefaults.standard.object(forKey: "address") as! String
+    model.politiciansAtAddress(politicianCompletionHandler)
+    model.getElections(electionCompletionHandler)
+    model.getPollingLocation(pollCompletionHandler)
+    
+    refreshViewForInterval()
+  }
+  
+  //EFFECTS: refreshes LocationCell and ElectionCell views
+  func refreshViewForInterval() {
+    refreshTimer = Timer.scheduledTimer(timeInterval: REFRESH_FREQUENCY, target:
+      self, selector: #selector(self.refreshViews), userInfo: nil, repeats: true)
+    refreshTimer.fire()
+    
+    DispatchQueue.main.asyncAfter(deadline: (.now() + 10)) {
+      self.refreshTimer.invalidate()
+    }
   }
   
   //EFFECTS: passes poll API response to the PoliticianDataModel
   fileprivate func pollCompletionHandler(_ response:
     DataResponse<Any>) {
-    if let result: JSON = JSON(response.result.value!) {
-      tbc.model.parsePollJSON(result)
-      refreshUI()
+    if let result = response.result.value {
+      model.parsePollJSON(JSON(result))
     }
   }
   
   //EFFECTS: passes election API response to the PoliticianDataModel
   fileprivate func electionCompletionHandler(_ response:
     DataResponse<Any>) {
-    if let result: JSON = JSON(response.result.value!) {
-      tbc.model.parseElectionJSON(result)
-      refreshUI()
+    if let result = response.result.value {
+      model.parseElectionJSON(JSON(result))
+      
     }
   }
   //EFFECTS: passes politician API response to the PoliticianDataModel
   fileprivate func politicianCompletionHandler(_ response:
     DataResponse<Any>) {
-    if let result: JSON = JSON(response.result.value!) {
-      tbc.model.parsePoliticianJSON(result)
-      refreshUI()
+    if let result = response.result.value {
+      model.parsePoliticianJSON(JSON(result))
+      
     }
   }
   
-  func tableView(_ tableView: UITableView, cellForRowAt
-    indexPath: IndexPath) -> UITableViewCell {
-    switch (indexPath as NSIndexPath).row {
-    case 0: return electionCellDelegate()
-    case 1: return locationCellDelegate()
-    case 2: return districtCellDelegate()
-    default: return UITableViewCell()
-    }
-  }
-  
-  fileprivate func electionCellDelegate() -> ElectionCell {
-    let cell = self.newsFeedTable.dequeueReusableCell(
-      withIdentifier: "ElectionCell") as! ElectionCell!
-    
-    cell?.calendarDayLabel!.layer.borderColor =
+  //EFFECTS: formats text for "Upcoming Elections" cell
+  func setupElectionCell() {
+    calendarDay.layer.borderColor =
       UIColor.lightGray.cgColor
-    cell?.calendarDayLabel!.layer.borderWidth = 1
+    calendarDay.layer.borderWidth = 1
     
-    if tbc.model.elections.count == 0 {
-      cell?.subHeader!.text = "no elections in the next 2-4 weeks"
-      //cell.lowerSubHeader!.text = "Notifications are: on"
+    if model.elections.count == 0 {
+      electionSubHeader.text = "No upcoming elections"
+      
+      //lowerSubHeader!.text = "Notifications are: on"
     }
     else {
-      if let name = tbc.model.electionName {
-        cell?.statusLabel!.text = name
+      if let name = model.electionName {
+        electionName.text = name
       }
-      if let date = tbc.model.electionDate {
-        cell?.calendarDayLabel!.text = date.day
-        cell?.calendarMonthLabel!.text = date.MMM
-        
+      if let date = model.electionDate {
+        calendarDay.text = date.day
+        calendarMonth.text = date.MMM
       }
-      cell?.subHeader!.text =
-        "There are \(tbc.model.elections.count) upcoming contests"
-      //cell.lowerSubHeader!.text = "Notifications are: on"
+      electionSubHeader.text =
+      "\(model.elections.count) upcoming contests"
+      //lowerSubHeader!.text = "Notifications are: on"
     }
-    
-    return cell!
-    
   }
   
-  fileprivate func locationCellDelegate() -> LocationCell {
-    let cell = self.newsFeedTable.dequeueReusableCell(
-      withIdentifier: "LocationCell") as! LocationCell!
+  //EFFECTS: formats text for "My Voting Location" cell
+  func setupLocationCell() {
     
-    if let location = tbc.model.pollingPlace {
-      cell?.locationName?.text = location.name
-      cell?.locationAddress?.text = location.line1
+    if let location = model.pollingPlace {
+      locationName.text = location.name
+      pollingAddress.text = location.line1
     }
     else {
-      if let available = tbc.model.civicAPI.status.pollingAddress {
-        if !available {
-          cell?.locationName?.text = "currently unavailable"
+      //When status is available, check for errors
+      //Otherwise, text just says, "Loading..."
+      if let status = model.civicAPI.status.pollingAddress {
+        
+        if status == false {
+          locationName.text = "Currently unavailable"
+          //selectionStyle = .none
         }
+      }
+    }
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    refreshUI()
+    return model.politicians.count
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! HeadshotCell
+    cell.backgroundColor = UIColor.clear
+    if model.politicians.count > indexPath.row {
+      if let portrait = model.politicians[indexPath.row].image {
+        cell.image.image = portrait
+        createRoundImageView(&cell.image!)
         
       }
+      cell.name.text = model.politicians[indexPath.row].last_name
     }
-    
-    return cell!
+   
+    return cell
   }
   
-  fileprivate func districtCellDelegate() -> DistrictCell {
-    let cell = self.newsFeedTable.dequeueReusableCell(
-      withIdentifier: "DistrictCell") as! DistrictCell!
+//  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//    //politicianHeads.collectionViewLayout.collectionViewContentSize.height = self.view.frame.width / 5 + 50
+//    return CGSize(width: self.view.frame.width / 5, height: self.view.frame.width / 5 + 27)
+//  }
+  
+//  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+//    return UIEdgeInsetsMake(0, 14, 0, 14)
+//  }
+  
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    print("collectionViewCell \(indexPath.row) was tapped")
     
-    if let available = tbc.model.civicAPI.status.district {
-      if !available {
-        cell?.user_city?.text = "currently unavailable"
-      }
-    }
-    
-    if let place = tbc.model.userDistrict {
-      if place.city != "" && place.county != "" {
-        cell?.user_city?.text = place.city + " (" + place.county + ")"
-      }
-      cell?.user_congressional_district?.text = place.congressional_district
-      cell?.user_state_house_district?.text = place.state_house_district
-      cell?.user_state_senate_district?.text = place.state_senate_district
-    }
-    
-    
-    return cell!
   }
   
-  fileprivate func createRoundLabel(_ label: inout UILabel) {
-    label.layer.cornerRadius = label.frame.size.width / 2;
-    label.clipsToBounds = true
-    label.layer.borderWidth = 2
-    label.layer.borderColor = UIColor.green.cgColor
+  //EFFECTS: rounds ImageView, adds bright green border
+  func createRoundImageView(_ imageView: inout UIImageView) {
+    imageView.layer.cornerRadius =
+      imageView.frame.size.width / 2;
+    imageView.clipsToBounds = true
+    imageView.layer.borderWidth = 2
+    
+    imageView.layer.borderColor = material_green.cgColor
   }
+
+
   
-  func tableView(_ tableView: UITableView, heightForRowAt
-    indexPath: IndexPath) -> CGFloat {
-    switch (indexPath as NSIndexPath).row {
-    case 0: return 115
-    case 1: return 115
-    case 2: return 175
-    default: return 115
-    }
-  }
+  
+
+  
+  
+  
+  
+//  if (row == 0 && model.elections.count > 0) {
+//  self.performSegue(withIdentifier: "viewBallot", sender: self)
+//  }
+//  if (row == 1 && model.elections.count > 0) {
+//  self.performSegue(withIdentifier: "viewPollingLocation", sender: self)
+//  }
+
   
   func refreshUI() {
     DispatchQueue.main.async(execute: {
-      self.newsFeedTable.reloadData()
+      self.politicianHeads.reloadData()
     });
   }
   
-  
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section:
-    Int) -> Int {
-    return 3
-  }
-  
-  func readJSONFromFile() {
-    if let path = Bundle.main.path(
-      forResource: "assets/test", ofType: "json") {
-      do {
-        let data = try Data(contentsOf: URL(fileURLWithPath: path),
-                              options: NSData.ReadingOptions.mappedIfSafe)
-        let jsonObj = JSON(data: data)
-        if jsonObj != JSON.null {
-          print("jsonData:\(jsonObj)")
-        } else {
-          print("could not get json from file")
-        }
-      } catch let error as NSError {
-        print(error.localizedDescription)
+
+}
+
+extension Int {
+  func times(f: () -> ()) {
+    if self > 0 {
+      for _ in 0..<self {
+        f()
       }
-    } else {
-      print("Invalid filename/path.")
     }
-    
   }
   
+  func times( f: @autoclosure () -> ()) {
+    if self > 0 {
+      for _ in 0..<self {
+        f()
+      }
+    }
+  }
 }

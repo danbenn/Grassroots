@@ -7,12 +7,14 @@
 //
 import Foundation
 import UIKit
+import CoreImage
 import SwiftyJSON
 import Alamofire
 import AlamofireImage
 
 class Politician {
   let name: String
+  var last_name = String()
   let runningMate: String
   let party: String
   var office: String!
@@ -20,6 +22,7 @@ class Politician {
   var short_bio: String!
   var image: UIImage!
   var imageURL: String!
+  var faceBox = UIView()
   
   fileprivate var facebookID: String = ""
   
@@ -46,10 +49,12 @@ class Politician {
     }
   
     //REMOVE MIDDLE NAME e.g., Lawrence R. Stelma
-    let components = revised_name.components(separatedBy: " ")
+    var components = revised_name.components(separatedBy: " ")
     if components.count == 3 {
       revised_name = components[0] + " " + components[2]
     }
+    
+    
     
     self.name = revised_name
     
@@ -73,6 +78,19 @@ class Politician {
       loadImage()
       
     }
+    findLastName(full_name: name)
+  }
+  
+  fileprivate func findLastName(full_name: String) {
+    let components = name.components(separatedBy: " ")
+    if components.count > 1 {
+      last_name = name.components(separatedBy: " ")[1]
+    }
+    else {
+      print("error: unable to parse last name for \(name)")
+      last_name = ""
+    }
+
   }
   
   //EFFECTS: initializes politician who has image
@@ -83,6 +101,7 @@ class Politician {
     self.party = party
     self.imageURL = imageURL
     loadImage()
+    findLastName(full_name: name)
   }
   
   init() {
@@ -100,13 +119,41 @@ class Politician {
             self.imageCompletionHandler(response)
           }
           else {
-            print("error: unable to fetch image for \(self.name)")
+            print("error: unable to fetch image for \(self.name) at \(self.imageURL)")
           }
       }
     }
   }
   
-  
+  //REQUIRES: self.image has been initialized to a valid image
+  //EFFECTS:  crops self.image to be centered on the face
+  fileprivate func cropImageToFace() {
+    let accuracy = [CIDetectorAccuracy: CIDetectorAccuracyHigh]
+    let faceDetector = CIDetector(ofType: CIDetectorTypeFace, context: nil, options: accuracy)!
+    if let ciImage = CIImage(image: image) {
+      let faces = faceDetector.features(in: ciImage)
+      if faces.count == 0 {
+        print("error: no faces detected for portrait of \(name)")
+      }
+      else if (faces.count > 1) {
+        print("error: more than one face detected for portrait of \(name)")
+      }
+      else {
+        //There is just one face
+        if let face = faces.first as? CIFaceFeature {
+          print("Found face in \(name) portrait at \(face.bounds)")
+          
+          var faceDimensions = face.bounds
+          
+          //scaleBoundsByFactor(bounds: &faceDimensions, scalingFactor: 1.2)
+          
+          //cropImageToBounds(bounds: faceDimensions)
+        }
+      }
+    }
+  }
+
+
   
   //EFFECTS:  creates politician bio from wikipedia
   //MODIFIES: bio
@@ -158,10 +205,9 @@ class Politician {
   //MODIFIES: image
   func imageCompletionHandler(_ response: DataResponse<UIImage>) {
     if let image = response.result.value {
-      
-      let cropped_image = squareCrop(image as! UIImage)
-      
-      self.image = cropped_image
+      self.image = image
+      cropImageToSquare()
+      print("image loaded for \(self.name)")
     }
   }
   
@@ -179,20 +225,7 @@ class Politician {
     return separated_names[0][0] + separated_names[lastNameIndex][0]
   }
   
-  
-  fileprivate func saveImage(_ image: UIImage, filename: String) {
-    let documentsURL = FileManager.default.urls(
-      for: .documentDirectory, in: .userDomainMask)[0]
-    
-    let path = documentsURL.appendingPathComponent(filename).path
-    
-    let pngImageData = UIImagePNGRepresentation(image)
-    
-    try? pngImageData!.write(to: URL(fileURLWithPath: path), options: [.atomic])
-    
-  }
-  
-  fileprivate func squareCrop(_ image: UIImage) -> UIImage {
+  fileprivate func cropImageToSquare() {
     
     let bitmapImage: UIImage = UIImage(cgImage: image.cgImage!)
     
@@ -206,10 +239,23 @@ class Politician {
     
     let imageRef: CGImage = bitmapImage.cgImage!.cropping(to: square)!
     
-    let croppedImage = UIImage(cgImage: imageRef, scale: image.scale, orientation: image.imageOrientation)
-    
-    return croppedImage
+    image = UIImage(cgImage: imageRef, scale: image.scale, orientation: image.imageOrientation)
   }
+  
+  fileprivate func cropImageToBounds(bounds: CGRect) {
+    let imageRef: CGImage = image.cgImage!.cropping(to: bounds)!
+    image = UIImage(cgImage: imageRef, scale: image.scale, orientation: image.imageOrientation)
+  }
+  
+  fileprivate func scaleBoundsByFactor(bounds: inout CGRect, scalingFactor: CGFloat) {
+    let startWidth = bounds.width
+    let startHeight = bounds.height
+    let adjustmentWidth = (startWidth * scalingFactor) / 2.0
+    let adjustmentHeight = (startHeight * scalingFactor) / 2.0
+    bounds = bounds.insetBy(dx: -adjustmentWidth, dy: -adjustmentHeight)
+  }
+
+
   
   
   

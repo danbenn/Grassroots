@@ -1,5 +1,5 @@
 //
-//  LocationNewsFeedCell.swift
+//  LocationCell.swift
 //  Grassroots
 //
 //  Created by Daniel Bennett on 8/19/16.
@@ -8,14 +8,5 @@
 
 import UIKit
 
-class LocationCell: UITableViewCell {
-  
-  @IBOutlet weak var statusLabel: UILabel!
-  
-  @IBOutlet weak var locationName: UILabel!
-  
-  @IBOutlet weak var locationAddress: UILabel!
-  
-  @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-  
+class LocationCell: UIView {
 }

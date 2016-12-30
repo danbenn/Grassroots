@@ -14,36 +14,37 @@ import CoreLocation
 class PollingAddressViewController: UIViewController {
   
   @IBOutlet weak var PollMap: MKMapView!
+  @IBOutlet weak var hours: UILabel!
+  @IBOutlet weak var notes: UILabel!
+  @IBOutlet weak var cityAndState: UILabel!
+  @IBOutlet weak var line1: UILabel!
   @IBOutlet weak var locationName: UILabel!
-  @IBOutlet weak var address: UILabel!
   
   @IBOutlet weak var directionsOutlet: UIButton!
   @IBAction func directions(_ sender: AnyObject) {
     model.requestDrivingDirections()
   }
   
-  
-  var model = PoliticianDataModel()
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    let tbc = self.tabBarController as! PoliticianTabController
-    model = tbc.model
     
-    if let place = tbc.model.pollingPlace {
+    if let place = model.pollingPlace {
       let fullAddress = place.line1 + ", "
         + place.city + ", " + place.state + " " + place.zip
       
       
       locationName?.text = place.name
-      address?.text = fullAddress
+      line1?.text = place.line1
+      cityAndState?.text = place.city + ", " + place.state
+      hours?.text = place.pollingHours
+      notes?.text = place.notes
       
       addPinAtAddress(fullAddress)
       
     }
     else {
-      address?.text = "unavailable"
+      line1?.text = "unavailable"
       directionsOutlet.isHidden = true
     }
     
