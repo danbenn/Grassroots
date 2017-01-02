@@ -87,11 +87,7 @@ UITableViewDelegate, UITableViewDataSource {
       createRoundLabel(cell.candidate2Initials, party: candidate2.party)
       cell.candidate2Image.image = nil
     }
-    
-    
-  
-    
-    
+
     
   }
   

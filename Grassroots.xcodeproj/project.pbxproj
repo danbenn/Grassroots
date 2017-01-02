@@ -31,11 +31,13 @@
 		FF6CB7751D8F206900416D03 /* DistrictViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6CB76E1D8F206900416D03 /* DistrictViewController.swift */; };
 		FF6CB7761D8F206900416D03 /* ElectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6CB76F1D8F206900416D03 /* ElectionsViewController.swift */; };
 		FF6CB7781D8F206900416D03 /* PollingAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6CB7711D8F206900416D03 /* PollingAddressViewController.swift */; };
+		FFA3C5371E19E0C600CEF0D2 /* BiographyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA3C5361E19E0C600CEF0D2 /* BiographyCell.swift */; };
 		FFC7B6E61E1355C6005CDE25 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC7B6E51E1355C6005CDE25 /* ProfileViewController.swift */; };
 		FFE837B51E149EB000912C75 /* PoliticianPreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE837B41E149EB000912C75 /* PoliticianPreviewCell.swift */; };
 		FFF221211D67600B00556F3B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFF221201D67600B00556F3B /* CoreLocation.framework */; };
 		FFF635121E15A35F0038F6C6 /* HeadshotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF635111E15A35F0038F6C6 /* HeadshotCell.swift */; };
 		FFF635131E16E51E0038F6C6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6CB7701D8F206900416D03 /* HomeViewController.swift */; };
+		FFF635151E19AED80038F6C6 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF635141E19AED80038F6C6 /* ProfileCell.swift */; };
 		FFF85DAD1D627F4B00DCC0B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF85DAC1D627F4B00DCC0B3 /* AppDelegate.swift */; };
 		FFF85DCF1D627F4B00DCC0B3 /* GrassrootsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF85DCE1D627F4B00DCC0B3 /* GrassrootsUITests.swift */; };
 /* End PBXBuildFile section */
@@ -86,10 +88,12 @@
 		FF6CB7701D8F206900416D03 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = Controllers/HomeViewController.swift; sourceTree = "<group>"; };
 		FF6CB7711D8F206900416D03 /* PollingAddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PollingAddressViewController.swift; path = Controllers/PollingAddressViewController.swift; sourceTree = "<group>"; };
 		FF8ABEAC1D83A54700FBD220 /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Images; sourceTree = "<group>"; };
+		FFA3C5361E19E0C600CEF0D2 /* BiographyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BiographyCell.swift; path = Views/BiographyCell.swift; sourceTree = "<group>"; };
 		FFC7B6E51E1355C6005CDE25 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = Controllers/ProfileViewController.swift; sourceTree = "<group>"; };
 		FFE837B41E149EB000912C75 /* PoliticianPreviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PoliticianPreviewCell.swift; path = Views/PoliticianPreviewCell.swift; sourceTree = "<group>"; };
 		FFF221201D67600B00556F3B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		FFF635111E15A35F0038F6C6 /* HeadshotCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HeadshotCell.swift; path = Views/HeadshotCell.swift; sourceTree = "<group>"; };
+		FFF635141E19AED80038F6C6 /* ProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileCell.swift; path = Views/ProfileCell.swift; sourceTree = "<group>"; };
 		FFF85DA91D627F4B00DCC0B3 /* Grassroots.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Grassroots.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFF85DAC1D627F4B00DCC0B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFF85DBA1D627F4B00DCC0B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -257,6 +261,8 @@
 				FF6CB7641D8F205A00416D03 /* ReferendumCell.swift */,
 				FFE837B41E149EB000912C75 /* PoliticianPreviewCell.swift */,
 				FFF635111E15A35F0038F6C6 /* HeadshotCell.swift */,
+				FFF635141E19AED80038F6C6 /* ProfileCell.swift */,
+				FFA3C5361E19E0C600CEF0D2 /* BiographyCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -466,6 +472,7 @@
 				FF6CB75C1D8F202A00416D03 /* PollingPlace.swift in Sources */,
 				FF6CB7691D8F205A00416D03 /* PoliticianCell.swift in Sources */,
 				FFF635121E15A35F0038F6C6 /* HeadshotCell.swift in Sources */,
+				FFF635151E19AED80038F6C6 /* ProfileCell.swift in Sources */,
 				FF6CB75B1D8F202A00416D03 /* Politician.swift in Sources */,
 				FF6CB7781D8F206900416D03 /* PollingAddressViewController.swift in Sources */,
 				FFF85DAD1D627F4B00DCC0B3 /* AppDelegate.swift in Sources */,
@@ -473,6 +480,7 @@
 				FF038CFD1DC7BF0D00CB4A56 /* VerificationViewController.swift in Sources */,
 				FF6CB7651D8F205A00416D03 /* ContestCell.swift in Sources */,
 				FFE837B51E149EB000912C75 /* PoliticianPreviewCell.swift in Sources */,
+				FFA3C5371E19E0C600CEF0D2 /* BiographyCell.swift in Sources */,
 				FF6CB7751D8F206900416D03 /* DistrictViewController.swift in Sources */,
 				FF6CB75E1D8F202A00416D03 /* PoliticianDataModel.swift in Sources */,
 				FFC7B6E61E1355C6005CDE25 /* ProfileViewController.swift in Sources */,
