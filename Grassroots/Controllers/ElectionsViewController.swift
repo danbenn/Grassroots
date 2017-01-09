@@ -19,9 +19,6 @@ UITableViewDelegate, UITableViewDataSource {
     model.openReferendumURL()
   }
   
-  let material_green =
-    UIColor(red: 76.0/255.0, green: 175.0/255.0, blue: 80.0/255.0, alpha: 1.0)
-  
   //EFFECTS: initializes view controller
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
@@ -30,8 +27,6 @@ UITableViewDelegate, UITableViewDataSource {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section:
@@ -50,14 +45,14 @@ UITableViewDelegate, UITableViewDataSource {
       candidate1 = candidates[0]
     }
     else {
-      candidate1 = Politician(name: "", party: "", facebookID: "")
+      candidate1 = Politician(name: "", party: "", facebookID: "", city: "", state: "")
     }
   
     if candidates.count >= 2 {
       candidate2 = candidates[1]
     }
     else {
-      candidate2 = Politician(name: "No opponent", party: "", facebookID: "")
+      candidate2 = Politician(name: "No opponent", party: "", facebookID: "", city: "", state: "")
     }
 
     
@@ -142,7 +137,7 @@ UITableViewDelegate, UITableViewDataSource {
     imageView.layer.cornerRadius = imageView.frame.size.width / 2;
     imageView.clipsToBounds = true
     imageView.layer.borderWidth = 2
-    imageView.layer.borderColor = material_green.cgColor
+    imageView.layer.borderColor = customColors.material_green.cgColor
     self.view.bringSubview(toFront: imageView);
     imageView.layer.zPosition = 1
     
@@ -160,8 +155,8 @@ UITableViewDelegate, UITableViewDataSource {
     label.layer.cornerRadius = label.frame.size.width / 2;
     label.clipsToBounds = true
     label.layer.borderWidth = 1
-    label.textColor = material_green
-    label.layer.borderColor = material_green.cgColor
+    label.textColor = customColors.material_green
+    label.layer.borderColor = customColors.material_green.cgColor
     
     if party.contains("epublic") {
       label.layer.borderColor = UIColor.red.cgColor
@@ -173,29 +168,15 @@ UITableViewDelegate, UITableViewDataSource {
     }
   }
   
-  
-  
   func refreshUI() {
     DispatchQueue.main.async(execute: {
       //self.myTableView.reloadData()
     });
   }
-  
-  
 }
 
 
 
-extension String {
-  
-  subscript (i: Int) -> Character {
-    return self[self.characters.index(self.startIndex, offsetBy: i)]
-  }
-  
-  subscript (i: Int) -> String {
-    return String(self[i] as Character)
-  }
-  
-}
+
 
 

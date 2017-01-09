@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="gki-dX-21L">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="JWX-1g-bVH">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -108,7 +108,81 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KOq-sE-gYd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="957.60000000000002" y="-718.29085457271367"/>
+            <point key="canvasLocation" x="574" y="-842"/>
+        </scene>
+        <!--Home View Controller-->
+        <scene sceneID="027-qZ-EWk">
+            <objects>
+                <tableViewController id="rDF-SI-PFb" customClass="HomeViewController" customModule="Grassroots" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="KmE-1f-ZOz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="e9T-Pv-xdr">
+                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e9T-Pv-xdr" id="z9a-Sc-zIa">
+                                    <frame key="frameInset" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="rDF-SI-PFb" id="g2o-9E-STi"/>
+                            <outlet property="delegate" destination="rDF-SI-PFb" id="a4p-5f-D71"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="jmr-F1-QkR">
+                        <barButtonItem key="rightBarButtonItem" image="settings" id="1nU-CC-dtU">
+                            <connections>
+                                <segue destination="52d-Vm-KVJ" kind="show" id="5L7-BX-Juf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="ayw-sk-XCf" kind="show" identifier="viewProfile" id="bTR-Dx-F0E"/>
+                        <segue destination="0Og-M3-lCn" kind="show" identifier="viewBallot" id="TPE-TH-MGq"/>
+                        <segue destination="Pt3-qD-KNL" kind="show" identifier="viewPollingAddress" id="Zwg-4j-NSr"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XeQ-3y-5oI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-479" y="666"/>
+        </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="2cb-yl-fFb">
+            <objects>
+                <collectionViewController id="ayw-sk-XCf" customClass="ProfileViewController" customModule="Grassroots" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="GUy-Z3-2BE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="pfD-Iu-c2U">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="YeE-v9-2TQ">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="ayw-sk-XCf" id="955-7r-y0l"/>
+                            <outlet property="delegate" destination="ayw-sk-XCf" id="DQN-9A-Bou"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sol-XV-Fer" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="574" y="665"/>
         </scene>
         <!--Settings-->
         <scene sceneID="jDH-Dj-opP">
@@ -130,7 +204,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EyY-pt-ICg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="893.60000000000002" y="151.57421289355324"/>
+            <point key="canvasLocation" x="2620" y="606.74662668665667"/>
         </scene>
         <!--Upcoming Elections-->
         <scene sceneID="x49-vA-poY">
@@ -360,134 +434,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="men-Sf-Q2U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="189.59999999999999" y="-718.29085457271367"/>
-        </scene>
-        <!--Your Reps-->
-        <scene sceneID="Ppl-8W-3hx">
-            <objects>
-                <viewController id="K5s-Ig-BQy" customClass="DistrictViewController" customModule="Grassroots" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" canCancelContentTouches="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelectionDuringEditing="YES" rowHeight="150" sectionHeaderHeight="28" sectionFooterHeight="28" id="NVY-Hg-Q5l">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="politicianCell" rowHeight="150" id="WaN-gk-bC9" customClass="PoliticianCell" customModule="Grassroots" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="150"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WaN-gk-bC9" id="h0f-dl-myV">
-                                    <frame key="frameInset" width="375" height="150"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kjS-Qk-Jfc">
-                                            <subviews>
-                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Eoz-WX-dvf">
-                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" scrollEnabled="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yzf-VN-qwR">
-                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <attributedString key="attributedText"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                    <dataDetectorType key="dataDetectorTypes" address="YES"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="allowsEditingTextAttributes" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </textView>
-                                            </subviews>
-                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstItem="Eoz-WX-dvf" firstAttribute="trailing" secondItem="kjS-Qk-Jfc" secondAttribute="trailingMargin" id="2jZ-M3-QPg"/>
-                                                <constraint firstItem="Eoz-WX-dvf" firstAttribute="leading" secondItem="kjS-Qk-Jfc" secondAttribute="leading" constant="16" id="4Jj-Md-fIu"/>
-                                                <constraint firstItem="Eoz-WX-dvf" firstAttribute="top" secondItem="kjS-Qk-Jfc" secondAttribute="topMargin" id="4xW-9I-fTD"/>
-                                                <constraint firstItem="yzf-VN-qwR" firstAttribute="bottom" secondItem="kjS-Qk-Jfc" secondAttribute="bottomMargin" id="5EZ-R4-tWP"/>
-                                                <constraint firstItem="yzf-VN-qwR" firstAttribute="leading" secondItem="kjS-Qk-Jfc" secondAttribute="leading" constant="11" id="9Hc-eo-lUt"/>
-                                                <constraint firstItem="Eoz-WX-dvf" firstAttribute="trailing" secondItem="yzf-VN-qwR" secondAttribute="trailing" id="JnD-1x-Fid"/>
-                                                <constraint firstAttribute="bottom" secondItem="Eoz-WX-dvf" secondAttribute="bottom" constant="93" id="Toe-W7-Fh2"/>
-                                                <constraint firstItem="yzf-VN-qwR" firstAttribute="top" secondItem="kjS-Qk-Jfc" secondAttribute="top" constant="39" id="U1N-Vv-Kgd"/>
-                                            </constraints>
-                                        </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DB" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xxe-f8-abo">
-                                            <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="142" id="mcc-aE-xyE"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="47"/>
-                                            <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <imageView autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blank_profile_picture" translatesAutoresizingMaskIntoConstraints="NO" id="pae-6F-qgR"/>
-                                    </subviews>
-                                    <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <constraints>
-                                        <constraint firstItem="xxe-f8-abo" firstAttribute="bottom" secondItem="kjS-Qk-Jfc" secondAttribute="bottom" id="0hZ-4l-O7y"/>
-                                        <constraint firstItem="kjS-Qk-Jfc" firstAttribute="leading" secondItem="pae-6F-qgR" secondAttribute="trailing" constant="8" symbolic="YES" id="2pI-3Y-ZgY"/>
-                                        <constraint firstItem="kjS-Qk-Jfc" firstAttribute="trailing" secondItem="h0f-dl-myV" secondAttribute="trailingMargin" id="6yK-Yk-G7l"/>
-                                        <constraint firstItem="pae-6F-qgR" firstAttribute="bottom" secondItem="xxe-f8-abo" secondAttribute="bottom" id="7dH-ZI-vTl"/>
-                                        <constraint firstItem="pae-6F-qgR" firstAttribute="top" secondItem="xxe-f8-abo" secondAttribute="top" id="HKe-q8-jJ1"/>
-                                        <constraint firstItem="pae-6F-qgR" firstAttribute="leading" secondItem="h0f-dl-myV" secondAttribute="leadingMargin" id="Ifn-PR-daF"/>
-                                        <constraint firstItem="kjS-Qk-Jfc" firstAttribute="leading" secondItem="xxe-f8-abo" secondAttribute="trailing" constant="8" symbolic="YES" id="UFi-20-gzv"/>
-                                        <constraint firstAttribute="bottom" secondItem="pae-6F-qgR" secondAttribute="bottom" id="a8z-iD-Sdg"/>
-                                        <constraint firstItem="pae-6F-qgR" firstAttribute="leading" secondItem="xxe-f8-abo" secondAttribute="leading" id="dUf-ir-dET"/>
-                                        <constraint firstItem="xxe-f8-abo" firstAttribute="top" secondItem="kjS-Qk-Jfc" secondAttribute="top" id="dYa-vS-iBG"/>
-                                        <constraint firstItem="xxe-f8-abo" firstAttribute="top" secondItem="h0f-dl-myV" secondAttribute="topMargin" id="ebp-n5-WhH"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="initials" destination="xxe-f8-abo" id="9mW-47-hfn"/>
-                                    <outlet property="politicianImage" destination="pae-6F-qgR" id="b1s-vH-MGZ"/>
-                                    <outlet property="politicianName" destination="Eoz-WX-dvf" id="0eK-Xs-1CX"/>
-                                    <outlet property="politicianTitle" destination="yzf-VN-qwR" id="CNr-y3-iq5"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="K5s-Ig-BQy" id="5Zk-em-EwG"/>
-                            <outlet property="delegate" destination="K5s-Ig-BQy" id="cmw-rv-QTj"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Your Reps" id="tIu-1x-Y1E"/>
-                    <connections>
-                        <outlet property="politicianTable" destination="NVY-Hg-Q5l" id="fUg-fF-AZs"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3eE-3A-pu5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1714" y="-718"/>
-        </scene>
-        <!--Profile View Controller-->
-        <scene sceneID="e9S-wo-cF2">
-            <objects>
-                <collectionViewController id="t0u-2h-Qpe" customClass="ProfileViewController" customModule="Grassroots" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="mct-dQ-D8x">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Xvh-ic-pTa">
-                            <size key="itemSize" width="50" height="50"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="headshotCell" reuseIdentifier="headshotCell" id="vPq-Vb-JwT" customClass="ProfileCell" customModule="Grassroots" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </view>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="t0u-2h-Qpe" id="RRc-hE-zKE"/>
-                            <outlet property="delegate" destination="t0u-2h-Qpe" id="hL2-uA-GoV"/>
-                        </connections>
-                    </collectionView>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oP7-oe-YRJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2579" y="-711"/>
+            <point key="canvasLocation" x="574" y="-123"/>
         </scene>
         <!--Sign In Controller-->
         <scene sceneID="o7B-2V-Rvf">
@@ -510,7 +457,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="99a-Na-hgj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1826" y="-1540"/>
+            <point key="canvasLocation" x="2230" y="-265"/>
         </scene>
         <!--Verification View Controller-->
         <scene sceneID="DzD-6Y-zlp">
@@ -526,224 +473,38 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="gki-dX-21L" kind="show" identifier="verificationDone" id="Vj5-cc-K4C"/>
                         <segue destination="ir4-hD-fjn" kind="show" identifier="reenterAddress" animates="NO" id="l4c-T6-8w9"/>
+                        <segue destination="JWX-1g-bVH" kind="show" identifier="verificationDone" id="Ag9-hI-Wd1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PMv-J2-ddh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-633" y="-1540"/>
-        </scene>
-        <!--Home-->
-        <scene sceneID="u1C-Cn-a0D">
-            <objects>
-                <viewController id="DsL-0S-ru2" customClass="HomeViewController" customModule="Grassroots" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="kMs-ad-Jme"/>
-                        <viewControllerLayoutGuide type="bottom" id="OQL-Ol-vUL"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="xb1-kx-qqC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jbj-09-03j" customClass="ElectionCell" customModule="Grassroots" customModuleProvider="target">
-                                <frame key="frameInset" minX="8" minY="72" width="359" height="117"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Upcoming Elections" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z8c-bp-mhj">
-                                        <frame key="frameInset" minX="105" minY="5" width="255" height="36"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="23"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="  " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0hi-8g-06D">
-                                        <frame key="frameInset" minX="8" minY="8" width="81" height="24"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.87843137250000003" green="0.2470588235" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Cf-bO-au8">
-                                        <frame key="frameInset" minX="8" minY="32" width="81" height="65"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="47"/>
-                                        <nil key="highlightedColor"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                                <integer key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
-                                                <color key="value" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HIr-GN-PAS">
-                                        <frame key="frameInset" minX="105" minY="68" width="246" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                        <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Loading..." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="15" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KFq-Nl-qxO">
-                                        <frame key="frameInset" minX="105" minY="37" width="246" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                        <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <color key="highlightedColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VUM-fz-m69" customClass="LocationCell" customModule="Grassroots" customModuleProvider="target">
-                                <frame key="frameInset" minY="197" width="359" height="107"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your Voting Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="c28-LJ-I0w">
-                                        <frame key="frameInset" minX="105" minY="8" width="246" height="35"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="23"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vR6-js-p8w">
-                                        <frame key="frameInset" minX="103" minY="61" width="304" height="38"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                        <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <color key="highlightedColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Loading..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="vyB-tu-lHy">
-                                        <frame key="frameInset" minX="103" minY="35" width="319" height="37"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                        <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <color key="highlightedColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="map_pin_color" translatesAutoresizingMaskIntoConstraints="NO" id="V3k-kz-tBy">
-                                        <frame key="frameInset" minX="22" minY="24" width="62" height="59"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="oxD-Yg-ZBF">
-                                <frame key="frameInset" minY="312" width="375" height="344"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7eW-1Z-rqs">
-                                    <size key="itemSize" width="305" height="148"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="40" minY="20" maxX="30" maxY="30"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="politicianHead" id="ef0-W7-cqz" customClass="HeadshotCell" customModule="Grassroots" customModuleProvider="target">
-                                        <rect key="frame" x="40" y="20" width="305" height="148"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="305" height="148"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blank_profile_picture" translatesAutoresizingMaskIntoConstraints="NO" id="qZt-sE-jJe"/>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZUA-nf-hRq">
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="27" id="X0M-9l-iFX"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </view>
-                                        <constraints>
-                                            <constraint firstItem="ZUA-nf-hRq" firstAttribute="leading" secondItem="ef0-W7-cqz" secondAttribute="leading" id="0Wd-lf-aRB"/>
-                                            <constraint firstAttribute="trailing" secondItem="ZUA-nf-hRq" secondAttribute="trailing" id="aKd-eH-Qz0"/>
-                                            <constraint firstItem="qZt-sE-jJe" firstAttribute="top" secondItem="ef0-W7-cqz" secondAttribute="topMargin" id="bct-ac-ABk"/>
-                                            <constraint firstItem="ZUA-nf-hRq" firstAttribute="top" secondItem="qZt-sE-jJe" secondAttribute="bottom" id="j70-yX-VCX"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="ZUA-nf-hRq" secondAttribute="bottom" constant="5" id="kH5-rc-LtY"/>
-                                            <constraint firstItem="qZt-sE-jJe" firstAttribute="leading" secondItem="ef0-W7-cqz" secondAttribute="leadingMargin" id="mYG-Sn-SVI"/>
-                                            <constraint firstItem="qZt-sE-jJe" firstAttribute="centerX" secondItem="ZUA-nf-hRq" secondAttribute="centerX" id="oNx-fq-A0D"/>
-                                        </constraints>
-                                        <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
-                                        <connections>
-                                            <outlet property="image" destination="qZt-sE-jJe" id="UVA-MJ-LR9"/>
-                                            <outlet property="name" destination="ZUA-nf-hRq" id="EYb-Ok-FPh"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
-                                <connections>
-                                    <outlet property="dataSource" destination="DsL-0S-ru2" id="7Ne-Ur-yGj"/>
-                                    <outlet property="delegate" destination="DsL-0S-ru2" id="uus-CG-sBe"/>
-                                </connections>
-                            </collectionView>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Home" id="BVD-fe-ckA">
-                        <barButtonItem key="rightBarButtonItem" image="settings" id="h7y-6S-sGc">
-                            <connections>
-                                <segue destination="52d-Vm-KVJ" kind="show" id="IbS-hP-0El"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="calendarDay" destination="1Cf-bO-au8" id="gdL-LE-kgZ"/>
-                        <outlet property="calendarMonth" destination="0hi-8g-06D" id="NmB-BS-ibK"/>
-                        <outlet property="electionCell" destination="Jbj-09-03j" id="TEq-Zl-dYG"/>
-                        <outlet property="electionLowerSubHeader" destination="HIr-GN-PAS" id="9lB-90-s2J"/>
-                        <outlet property="electionName" destination="z8c-bp-mhj" id="kdb-gO-15L"/>
-                        <outlet property="electionSubHeader" destination="KFq-Nl-qxO" id="y3m-1x-YEf"/>
-                        <outlet property="locationCell" destination="VUM-fz-m69" id="NRU-9r-v4O"/>
-                        <outlet property="locationName" destination="vyB-tu-lHy" id="n8d-oo-QAd"/>
-                        <outlet property="locationTitle" destination="c28-LJ-I0w" id="E3s-ZJ-DZC"/>
-                        <outlet property="politicianHeads" destination="oxD-Yg-ZBF" id="XEU-v1-qtV"/>
-                        <outlet property="pollingAddress" destination="vR6-js-p8w" id="53e-OC-Fcq"/>
-                        <segue destination="ir4-hD-fjn" kind="showDetail" identifier="loginView" action="showViewController:sender:" id="TtF-Hi-OiM"/>
-                        <segue destination="gki-dX-21L" kind="show" identifier="embedInNavController" animates="NO" id="zlk-zM-17w"/>
-                        <segue destination="0Og-M3-lCn" kind="show" identifier="viewBallot" id="Neh-LR-IPp"/>
-                        <segue destination="Pt3-qD-KNL" kind="show" identifier="viewPollingLocation" id="uD3-m9-LwA"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yVu-ir-ysI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-602.39999999999998" y="-718.29085457271367"/>
+            <point key="canvasLocation" x="3385" y="-266"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="QgA-e3-EIJ">
+        <scene sceneID="47d-Cf-ULv">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gki-dX-21L" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JWX-1g-bVH" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bNl-ZZ-t6l">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3wH-Pq-BBI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="A59-ny-7LG">
-                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    </toolbar>
                     <connections>
-                        <segue destination="DsL-0S-ru2" kind="relationship" relationship="rootViewController" id="ZjF-lE-uGq"/>
+                        <segue destination="rDF-SI-PFb" kind="relationship" relationship="rootViewController" id="puO-kF-Cgx"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="egi-If-F8P" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xgR-O1-J8r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1463" y="-718"/>
+            <point key="canvasLocation" x="-1446" y="666"/>
         </scene>
     </scenes>
     <resources>
-        <image name="blank_profile_picture" width="640" height="640"/>
-        <image name="map_pin_color" width="1024" height="1024"/>
         <image name="settings" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zlk-zM-17w"/>
-        <segue reference="TtF-Hi-OiM"/>
+        <segue reference="l4c-T6-8w9"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>

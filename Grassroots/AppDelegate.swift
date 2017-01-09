@@ -46,13 +46,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let tabBarController = window?.rootViewController as? UITabBarController,
             let viewControllers = tabBarController.viewControllers! as? [UIViewController] {
             for viewController in viewControllers {
-                if viewController is HomeViewController {
-                    
-                    //homeViewController.tbc.model.getElections(homeViewController.electionCompletionHandler)
-                    
-                    
-                
-                }
+//                if viewController is HomeViewController {
+//                    
+//                    //homeViewController.tbc.model.getElections(homeViewController.electionCompletionHandler)
+//                    
+//                    
+//                
+//                }
             }
         }
     }

@@ -22,7 +22,9 @@ class VerificationViewController: UIViewController {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
     label.text = "Thanks!"
-    label.font = UIFont.systemFont(ofSize:20)
+    //label.font = UIFont(name: "Avenir", size: 20)
+    label.font = UIFont.boldSystemFont(ofSize: 18)
+    label.alpha = 0.7
     label.textAlignment = .center
     return label
   }()
@@ -31,10 +33,12 @@ class VerificationViewController: UIViewController {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
     label.text = "Verifying address..."
-    label.font = UIFont.systemFont(ofSize: 20)
+    //label.font = UIFont(name: "Avenir", size: 20)
+    label.font = UIFont.boldSystemFont(ofSize: 18)
     label.textAlignment = .center
     label.adjustsFontSizeToFitWidth = true
     label.minimumScaleFactor = 0.5
+    label.alpha = 0.7
     return label
   }()
 
@@ -55,6 +59,7 @@ class VerificationViewController: UIViewController {
     button.setTitleColor(UIColor.white, for: .normal)
     button.titleLabel?.font = UIFont.boldSystemFont(ofSize:20)
     button.setTitle("Yep, that's me", for: .normal)
+    button.isEnabled = false
     button.addTarget(nil, action: #selector(verificationDone),
       for: .touchUpInside)
     return button
@@ -72,16 +77,6 @@ class VerificationViewController: UIViewController {
     button.backgroundColor = UIColor.red
     return button
   }()
-  
-  
-  func stylizeButton(button: UIButton) {
-    button.backgroundColor = UIColor(red: 76.0/255.0,
-      green: 175.0/255.0, blue: 80.0/255.0, alpha: 1.0)
-    button.translatesAutoresizingMaskIntoConstraints = false
-    button.layer.cornerRadius = 5
-    button.setTitleColor(UIColor.white, for: .normal)
-    button.titleLabel?.font = UIFont.boldSystemFont(ofSize:20)
-  }
   
   func reenterAddress() {
     performSegue(withIdentifier: "reenterAddress", sender: self)
@@ -112,6 +107,16 @@ class VerificationViewController: UIViewController {
     print("requesting voterinfo for address \(address)...")
     model.address = address
     model.politiciansAtAddress(addressCompletionHandler)
+    
+    DispatchQueue.main.asyncAfter(deadline: (.now() + 4)) {
+      if (self.cityAndState.text == "Verifying address...") {
+        self.cityAndState.text = "Couldn't load address, please try again"
+        self.confirmationButton.alpha = 0.5
+      }
+    }
+
+    
+    
   }
 
   func setupProfileImageView() {
@@ -189,10 +194,12 @@ class VerificationViewController: UIViewController {
       firstLineOfAddress.text = result["normalizedInput"]["line1"].stringValue
       cityAndState.text = result["normalizedInput"]["city"].stringValue +
         ", " + result["normalizedInput"]["state"].stringValue
+      confirmationButton.isEnabled = true
+      confirmationButton.alpha = 1
+    
     }
     else {
-      firstLineOfAddress.text = "something broke, try again"
-      cityAndState.text = ""
+      cityAndState.text = "Couldn't load address, please try again"
     }
   }
 
@@ -201,3 +208,7 @@ class VerificationViewController: UIViewController {
     super.init(coder: aDecoder)
   }
 }
+
+func setTimeoutOnAddressFetch() {
+  }
+

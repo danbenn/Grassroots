@@ -13,16 +13,19 @@ import Alamofire
 import AlamofireImage
 
 class Politician {
-  let name: String
+  var name: String!
   var last_name = String()
-  let runningMate: String
-  let party: String
+  var runningMate: String!
+  var party: String!
   var office: String!
-  var full_bio: String!
+  var full_bio = String()
   var short_bio: String!
   var image: UIImage!
   var imageURL: String!
   var faceBox = UIView()
+  var web_ready_name = String()
+  var city = String()
+  var state = String()
   
   fileprivate var facebookID: String = ""
   
@@ -30,47 +33,58 @@ class Politician {
     [unowned self] in
     return self.initialsOfFullName()
     }()
-
   
-  //EFFECTS: initializes politician without an image
-  //MODIFIES: name, party
-  init(name: String, party: String, facebookID: String) {
-    
-    var revised_name = name
-    
-    //REMOVE RUNNING MATE'S NAME
+  //REMOVE MIDDLE NAME e.g., Lawrence R. Stelma ---> Lawrence Stelma
+  func removeMiddleName() {
+    var components = name.components(separatedBy: " ")
+    if components.count == 3 {
+      self.name = components[0] + " " + components[2]
+    }
+    if (components.count < 2 || components.count > 3) {
+      print("error: unable to remove middle name in string: \(name)")
+    }
+    print("result: \(self.name)")
+  }
+  
+  
+  func removeRunningMateName() {
     if name.contains("/") {
       let names = name.components(separatedBy: "/")
-      revised_name = names[0]
+      self.name = names[0]
       self.runningMate = names[1]
     }
     else {
       self.runningMate = ""
     }
+  }
   
-    //REMOVE MIDDLE NAME e.g., Lawrence R. Stelma
-    var components = revised_name.components(separatedBy: " ")
-    if components.count == 3 {
-      revised_name = components[0] + " " + components[2]
-    }
-    
-    
-    
-    self.name = revised_name
-    
-    if party.contains("Republican") {
+  func normalizeParty() {
+    if party.contains("epublic") {
       self.party = "Republican"
     }
-    else if party.contains("Democrat") {
+    else if party.contains("emocrat") {
       self.party = "Democrat"
     }
-    else if party.contains("Libertarian") {
+    else if party.contains("ibertar") {
       self.party = "Libertarian"
     }
-    else {
-      self.party = party
-    }
+  }
+  
+  //EFFECTS: initializes politician without an image
+  //MODIFIES: name, party
+  init(name: String, party: String, facebookID: String, city: String, state: String) {
+
+    self.name = name
+    self.party = party
+    self.city = city
+    self.state = state
     
+    removeRunningMateName()
+      
+    removeMiddleName()
+    
+    normalizeParty()
+  
     if facebookID != "" {
       imageURL =
         "http://graph.facebook.com/\(facebookID)/picture?type=large"
@@ -79,6 +93,8 @@ class Politician {
       
     }
     findLastName(full_name: name)
+    
+    findWikipediaInfo()
   }
   
   fileprivate func findLastName(full_name: String) {
@@ -90,21 +106,27 @@ class Politician {
       print("error: unable to parse last name for \(name)")
       last_name = ""
     }
-
   }
   
   //EFFECTS: initializes politician who has image
   //MODIFIES: name, party, imageURL
-  init(name: String, party: String, imageURL: String) {
+  init(name: String, party: String, imageURL: String, city: String, state: String) {
     self.name = name
-    self.runningMate = ""
     self.party = party
+    self.city = city
+    self.state = state
+    removeRunningMateName()
+    removeMiddleName()
+    normalizeParty()
+    
     self.imageURL = imageURL
     loadImage()
     findLastName(full_name: name)
+    findWikipediaInfo()
   }
   
   init() {
+    
     self.name = ""
     self.runningMate = ""
     self.party = ""
@@ -143,7 +165,7 @@ class Politician {
         if let face = faces.first as? CIFaceFeature {
           print("Found face in \(name) portrait at \(face.bounds)")
           
-          var faceDimensions = face.bounds
+          //var faceDimensions = face.bounds
           
           //scaleBoundsByFactor(bounds: &faceDimensions, scalingFactor: 1.2)
           
@@ -152,6 +174,22 @@ class Politician {
       }
     }
   }
+  
+//  func findFacebookBiography() {
+//    
+//    
+//    let connection = GraphRequestConnection()
+//    connection.add(GraphRequest(graphPath: "/me")) { httpResponse, result in
+//      switch result {
+//      case .success(let response):
+//        print("Graph Request Succeeded: \(response)")
+//      case .failed(let error):
+//        print("Graph Request Failed: \(error)")
+//      }
+//    }
+//    connection.start()
+//
+//  }
 
 
   
@@ -164,12 +202,9 @@ class Politician {
     let first_last = separated_names.first! + " " + separated_names.last!
     
     //print(first_last)
-    
-    let web_ready_name = first_last.replacingOccurrences(of: " ", with: "%20")
-    let summaryURL = "https://en.wikipedia.org/w/api.php!format=json&action=query&prop=extracts" +
-      "&redirects=1&exintro=&explaintext=&titles=\(web_ready_name)"
-    _ = "https://en.wikipedia.org/w/api.php?action=query" +
-      "&redirects=1&titles=\(web_ready_name)&prop=pageimages&format=json&pithumbsize=200"
+  
+    web_ready_name = first_last.replacingOccurrences(of: " ", with: "%20")
+    let summaryURL = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=\(web_ready_name)"
     
     requestBio(summaryURL)
     
@@ -183,7 +218,7 @@ class Politician {
           self.bioCompletionHandler(response)
         }
         else {
-          print("error: unable to process bio API request to MediaWiki")
+          print("error: unable to process bio API request to MediaWiki for URL: \(summaryURL)")
           //print(response.result.error)
         }
     }
@@ -197,6 +232,11 @@ class Politician {
       let first_page = pages.first!.0
       self.full_bio = pages[first_page]["extract"].stringValue
     }
+  }
+  
+  func retrieveFirstParagraphOfBio() {
+    var paragraphs = self.full_bio.components(separatedBy: "\n")
+    self.full_bio = paragraphs[0]
   }
   
   
@@ -219,7 +259,9 @@ class Politician {
     case 2:  lastNameIndex = 1 //John Smith
     case 3:  lastNameIndex = 2 //John W Smith
     case 4:  lastNameIndex = 2 //John W Smith Jr
-    default: break //print("unable to parse initials for \(name)")
+    default:
+      print("error: unable to parse initials for \(name)")
+      break
     }
     
     return separated_names[0][0] + separated_names[lastNameIndex][0]

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1FB7445894701B5F449A5C65 /* Pods_Grassroots.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE7FB761CAEB3B3378097A4 /* Pods_Grassroots.framework */; };
 		FF038CFD1DC7BF0D00CB4A56 /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF038CFC1DC7BF0D00CB4A56 /* VerificationViewController.swift */; };
+		FF19A62F1E21D5DA00CD97CE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF19A62E1E21D5DA00CD97CE /* Images.xcassets */; };
+		FF19A6321E21E28A00CD97CE /* SwiftyJSON-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FF19A6311E21E28A00CD97CE /* SwiftyJSON-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FF3601E41D8F32E600A3B0EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF3601E31D8F32E600A3B0EC /* Assets.xcassets */; };
 		FF39E1F01D8F2E8C004E9045 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF39E1EC1D8F2E8C004E9045 /* LaunchScreen.storyboard */; };
 		FF39E1F11D8F2E8C004E9045 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF39E1EE1D8F2E8C004E9045 /* Main.storyboard */; };
@@ -40,6 +42,8 @@
 		FFF635151E19AED80038F6C6 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF635141E19AED80038F6C6 /* ProfileCell.swift */; };
 		FFF85DAD1D627F4B00DCC0B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF85DAC1D627F4B00DCC0B3 /* AppDelegate.swift */; };
 		FFF85DCF1D627F4B00DCC0B3 /* GrassrootsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF85DCE1D627F4B00DCC0B3 /* GrassrootsUITests.swift */; };
+		FFF933021E1C1F64006837D6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF933011E1C1F64006837D6 /* Extensions.swift */; };
+		FFF933061E1F572C006837D6 /* PictureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF933051E1F572C006837D6 /* PictureCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +68,8 @@
 		606902916B4C0EFC4E64E639 /* Pods-Grassroots.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grassroots.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Grassroots/Pods-Grassroots.debug.xcconfig"; sourceTree = "<group>"; };
 		8BE7FB761CAEB3B3378097A4 /* Pods_Grassroots.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Grassroots.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF038CFC1DC7BF0D00CB4A56 /* VerificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerificationViewController.swift; path = Controllers/VerificationViewController.swift; sourceTree = "<group>"; };
+		FF19A62E1E21D5DA00CD97CE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		FF19A6311E21E28A00CD97CE /* SwiftyJSON-umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SwiftyJSON-umbrella.h"; path = "Pods/Target Support Files/SwiftyJSON/SwiftyJSON-umbrella.h"; sourceTree = "<group>"; };
 		FF3601E31D8F32E600A3B0EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FF39E1ED1D8F2E8C004E9045 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FF39E1EF1D8F2E8C004E9045 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -102,6 +108,8 @@
 		FFF85DCA1D627F4B00DCC0B3 /* GrassrootsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GrassrootsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFF85DCE1D627F4B00DCC0B3 /* GrassrootsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrassrootsUITests.swift; sourceTree = "<group>"; };
 		FFF85DD01D627F4B00DCC0B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FFF933011E1C1F64006837D6 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Models/Extensions.swift; sourceTree = "<group>"; };
+		FFF933051E1F572C006837D6 /* PictureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PictureCell.swift; path = Views/PictureCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +160,7 @@
 		FFF85DA01D627F4B00DCC0B3 = {
 			isa = PBXGroup;
 			children = (
+				FF19A6311E21E28A00CD97CE /* SwiftyJSON-umbrella.h */,
 				FFF85DAB1D627F4B00DCC0B3 /* Grassroots */,
 				FFF85DC21D627F4B00DCC0B3 /* GrassrootsTests */,
 				FFF85DCD1D627F4B00DCC0B3 /* GrassrootsUITests */,
@@ -181,6 +190,7 @@
 				FFF85DF01D62812700DCC0B3 /* Views */,
 				FFF85DEA1D627FDC00DCC0B3 /* Controllers */,
 				FFF85DEE1D6280F300DCC0B3 /* Resources */,
+				FF19A62E1E21D5DA00CD97CE /* Images.xcassets */,
 				FFF85DED1D62805700DCC0B3 /* Supporting Files */,
 			);
 			path = Grassroots;
@@ -230,6 +240,7 @@
 				FF6CB7531D8F202A00416D03 /* PollingPlace.swift */,
 				FF6CB7541D8F202A00416D03 /* Referendum.swift */,
 				FF6CB7551D8F202A00416D03 /* PoliticianDataModel.swift */,
+				FFF933011E1C1F64006837D6 /* Extensions.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -263,11 +274,23 @@
 				FFF635111E15A35F0038F6C6 /* HeadshotCell.swift */,
 				FFF635141E19AED80038F6C6 /* ProfileCell.swift */,
 				FFA3C5361E19E0C600CEF0D2 /* BiographyCell.swift */,
+				FFF933051E1F572C006837D6 /* PictureCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		FF19A6301E21E23D00CD97CE /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF19A6321E21E28A00CD97CE /* SwiftyJSON-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		FFF85DA81D627F4B00DCC0B3 /* Grassroots */ = {
@@ -280,6 +303,7 @@
 				FFF85DA71D627F4B00DCC0B3 /* Resources */,
 				889C7868FE875837571D5E16 /* [CP] Embed Pods Frameworks */,
 				3E9FE4B91EFB43A96201ECA4 /* [CP] Copy Pods Resources */,
+				FF19A6301E21E23D00CD97CE /* Headers */,
 			);
 			buildRules = (
 			);
@@ -385,6 +409,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF39E1F11D8F2E8C004E9045 /* Main.storyboard in Resources */,
+				FF19A62F1E21D5DA00CD97CE /* Images.xcassets in Resources */,
 				FF3601E41D8F32E600A3B0EC /* Assets.xcassets in Resources */,
 				FF39E1F01D8F2E8C004E9045 /* LaunchScreen.storyboard in Resources */,
 			);
@@ -461,6 +486,7 @@
 			files = (
 				FFF635131E16E51E0038F6C6 /* HomeViewController.swift in Sources */,
 				FF6CB7671D8F205A00416D03 /* ElectionCell.swift in Sources */,
+				FFF933061E1F572C006837D6 /* PictureCell.swift in Sources */,
 				FF6CB7571D8F202A00416D03 /* CivicAPI.swift in Sources */,
 				FF6CB76A1D8F205A00416D03 /* ReferendumCell.swift in Sources */,
 				FF6CB7731D8F206900416D03 /* SignInController.swift in Sources */,
@@ -469,6 +495,7 @@
 				FF6CB7581D8F202A00416D03 /* Date.swift in Sources */,
 				FF6CB7591D8F202A00416D03 /* District.swift in Sources */,
 				FF6CB75D1D8F202A00416D03 /* Referendum.swift in Sources */,
+				FFF933021E1C1F64006837D6 /* Extensions.swift in Sources */,
 				FF6CB75C1D8F202A00416D03 /* PollingPlace.swift in Sources */,
 				FF6CB7691D8F205A00416D03 /* PoliticianCell.swift in Sources */,
 				FFF635121E15A35F0038F6C6 /* HeadshotCell.swift in Sources */,

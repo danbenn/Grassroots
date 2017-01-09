@@ -25,7 +25,6 @@ class PoliticianDataModel {
   var address = ""
   
   fileprivate func loadAddress() -> String {
-    
     if let address:String = UserDefaults.standard.string(forKey: "address") {
       return address
     }
@@ -130,8 +129,8 @@ class PoliticianDataModel {
     let district = contest["district"]["name"].stringValue
     let index = contest["ballotPlacement"].intValue
     
-    var republican = Politician(name: "No opponent", party: "Republican", facebookID: "")
-    var democrat = Politician(name: "No opponent", party: "Democratic", facebookID: "")
+    var republican = Politician(name: "No opponent", party: "Republican", facebookID: "", city: "", state: "")
+    var democrat = Politician(name: "No opponent", party: "Democratic", facebookID: "", city: "", state: "")
     var independents = [Politician]()
     
     //Initialize candidates
@@ -145,11 +144,11 @@ class PoliticianDataModel {
         
         if candidate["photoUrl"].exists() {
           let imageURL = candidate["photoUrl"].stringValue
-          person = Politician(name: name, party: party, imageURL: imageURL)
+          person = Politician(name: name, party: party, imageURL: imageURL, city: "", state: "")
         }
         else {
           let id = facebookID(candidate)
-          person = Politician(name: name, party: party, facebookID: id)
+          person = Politician(name: name, party: party, facebookID: id, city: "", state: "")
         }
         if party.range(of: "Democrat") != nil {
           democrat = person
@@ -259,13 +258,25 @@ class PoliticianDataModel {
         let party = person["party"].stringValue
         let name = person["name"].stringValue
         
+        print(person["add"])
+        
+        
+        
+       print(person["address"].exists)
+
+    
+        let city = ""
+        let state = ""
+
+        //print("city: \(city), state: \(state)")
+                
         if (person["photoUrl"].exists()) {
           let imageURL = person["photoUrl"].stringValue
-          politicians.append(Politician(name: name, party: party, imageURL: imageURL))
+          politicians.append(Politician(name: name, party: party, imageURL: imageURL, city: city, state: state))
         }
         else {
           let id = facebookID(person)
-          politicians.append(Politician(name: name, party: party, facebookID: id))
+          politicians.append(Politician(name: name, party: party, facebookID: id, city: city, state: state))
         }
       }
       

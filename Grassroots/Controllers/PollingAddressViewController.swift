@@ -47,14 +47,6 @@ class PollingAddressViewController: UIViewController {
       line1?.text = "unavailable"
       directionsOutlet.isHidden = true
     }
-    
-    
-    
-    
-    
-    
-    
-    
   }
   
   func addPinAtAddress(_ address: String) {
@@ -80,8 +72,7 @@ class PollingAddressViewController: UIViewController {
       location.coordinate, regionRadius * 2.0, regionRadius * 2.0)
     PollMap.setRegion(coordinateRegion, animated: true)
   }
-  
-  
+
 }
 
 
